@@ -90,7 +90,6 @@
         </div>
     </div>
 
-    <!-- OSTALI EKRANI: Vsebujejo nazaj gumb -->
     <!-- ZALOGA -->
     <div id="zaloga" class="screen p-6 max-w-md mx-auto">
         <button onclick="showScreen('main-menu')" class="mb-4 text-main-teal font-bold uppercase text-[10px] bg-white px-3 py-1 rounded-full shadow-sm">← Nazaj</button>
@@ -108,7 +107,7 @@
         <div id="kontakti-list" class="space-y-3"></div>
     </div>
 
-    <!-- URADNO (Dobavnice / Računi) -->
+    <!-- URADNO -->
     <div id="uradno" class="screen p-6 max-w-md mx-auto pb-32">
         <button onclick="showScreen('main-menu')" class="mb-4 text-main-teal font-bold uppercase text-[10px] bg-white px-3 py-1 rounded-full shadow-sm">← Nazaj</button>
         <h2 class="text-3xl font-black mb-6 uppercase text-slate-800 italic tracking-tighter">Uradno</h2>
@@ -171,7 +170,7 @@
     </div>
 
     <!-- MODALI -->
-    <!-- MODAL ZA UREJANJE ZGODOVINE -->
+    <!-- UREJANJE ZGODOVINE -->
     <div id="edit-modal" class="hidden fixed inset-0 bg-black/60 z-[100] flex items-center justify-center p-4 backdrop-blur-sm">
         <div class="bg-white p-6 rounded-2xl w-full max-w-sm shadow-2xl relative max-h-[90vh] flex flex-col">
             <h3 class="font-black text-main-teal uppercase text-lg italic mb-4">Uredi vnos</h3>
@@ -199,7 +198,7 @@
         </div>
     </div>
 
-    <!-- MODAL ZA PLAČILO -->
+    <!-- POTRDI PLAČILO -->
     <div id="placilo-modal" class="hidden fixed inset-0 bg-black/60 z-[100] flex items-center justify-center p-4 backdrop-blur-sm">
         <div class="bg-white p-6 rounded-2xl w-full max-w-sm shadow-2xl relative">
             <h3 class="font-black text-green-700 uppercase text-lg italic mb-4">Potrdi plačilo</h3>
@@ -221,7 +220,7 @@
         </div>
     </div>
 
-    <!-- MODAL ZA KONTAKT -->
+    <!-- NOV KONTAKT -->
     <div id="kontakt-modal" class="hidden fixed inset-0 bg-black/60 z-[100] flex items-center justify-center p-4 backdrop-blur-sm">
         <div class="bg-white p-6 rounded-2xl w-full max-w-sm shadow-2xl relative max-h-[90vh] overflow-y-auto">
             <h3 class="font-black text-indigo-600 uppercase text-lg italic mb-4" id="kontakt-modal-title">Nov Kontakt</h3>
@@ -243,7 +242,7 @@
         </div>
     </div>
 
-    <!-- MODAL ZA DOKUMENT (URADNO) -->
+    <!-- NOV DOKUMENT -->
     <div id="uradno-modal" class="hidden fixed inset-0 bg-black/60 z-[100] flex items-center justify-center p-4 backdrop-blur-sm">
         <div class="bg-white p-6 rounded-2xl w-full max-w-sm shadow-2xl relative">
             <h3 class="font-black text-slate-800 uppercase text-lg italic mb-4">Nov Dokument</h3>
@@ -263,7 +262,7 @@
         </div>
     </div>
 
-    <!-- MODAL ZA DETELJE TRGOVINE -->
+    <!-- TRGOVINA STATS -->
     <div id="trgovina-stats-modal" class="hidden fixed inset-0 bg-black/60 z-[100] flex items-center justify-center p-4 backdrop-blur-sm">
         <div class="bg-white p-6 rounded-2xl w-full max-w-sm shadow-2xl relative max-h-[90vh] overflow-hidden flex flex-col">
             <h3 id="ts-title" class="font-black text-main-teal uppercase text-lg italic mb-2">Trgovina</h3>
@@ -298,7 +297,7 @@
 
     <script type="module">
         import { initializeApp } from "https://www.gstatic.com/firebasejs/10.8.0/firebase-app.js";
-        import { getFirestore, doc, getDoc, updateDoc, setDoc, increment, collection, addDoc, query, orderBy, getDocs, deleteDoc, onSnapshot, where } from "https://www.gstatic.com/firebasejs/10.8.0/firebase-firestore.js";
+        import { getFirestore, doc, getDoc, updateDoc, setDoc, increment, collection, addDoc, query, orderBy, getDocs, deleteDoc, onSnapshot } from "https://www.gstatic.com/firebasejs/10.8.0/firebase-firestore.js";
 
         const firebaseConfig = {
             apiKey: "AIzaSyDb8ny-gDdJUm0JBpyci_k-JboUYoM6ZhQ",
@@ -319,7 +318,6 @@
             "Obala": ["Piran", "Grb Piran", "Tartini", "Portorož"],
             "Srbija": ["Srbija", "Novi Sad", "Okno", "Fraklič", "Šajkača", "Petrovaradinski sat", "Opanak", "Lepenski vir"]
         };
-        // Dodana LUNA Izdelki
         const trgovine = ["Souvenirs LJ", "Pik Pok Bled", "NC Planica", "TD Bled", "Unikatnica", "Postojnska jama privat", "Souvenirs NS", "Zakladi Triglav", "Zakladi Zaka Bled", "Stojnica Bovec", "Sonček Piran", "Memories of Piran", "Muzej Piran", "Vanja Portorož", "LUNA Izdelki", "Drugo"];
 
         window.showScreen = (id) => {
@@ -340,10 +338,8 @@
             btn.innerText = el.classList.contains('hidden') ? "Prikaži vse ↓" : "Skrij ↑";
         };
 
-        // GLOBAL DATA STORAGE ZA STATS MODOLE
         window.allTransactions = [];
 
-        // FINANCE DASHBOARD (Updatan za plačano prodajo)
         onSnapshot(collection(db, "transakcije"), (snap) => {
             let bruto = 0, stroski = 0, placanoNeto = 0;
             window.allTransactions = [];
@@ -369,7 +365,6 @@
             document.getElementById('dash-profit').innerText = `${profit.toFixed(2)} €`;
         });
 
-        // ------------------ STATISTIKA ------------------
         async function naloziStats() {
             let trgStats = {}, nalStats = {};
             trgovine.forEach(t => trgStats[t] = { eur: 0, nalepke: {} });
@@ -391,13 +386,11 @@
                             }
                         }
                     } else {
-                        // ZA STARE LOGE - Če artikel ni določen, prištejemo pod Neopredeljeno
                         nalStats["Neopredeljeno (star log)"] += (data.kolicina || 0);
                     }
                 }
             });
 
-            // GUMBI TRGOVIN
             const trgList = document.getElementById('stats-trgovine-list');
             trgList.innerHTML = "";
             Object.entries(trgStats).sort((a,b) => b[1].eur - a[1].eur).forEach(([t, s]) => {
@@ -410,7 +403,6 @@
                 }
             });
 
-            // VSE NALEPKE
             const nalArr = Object.entries(nalStats).sort((a,b) => b[1] - a[1]);
             const renderNalepka = (n, k, i, isTop) => `
                 <div class="flex justify-between items-center bg-white ${isTop ? 'p-4' : 'p-2'} rounded-xl border border-slate-100 shadow-sm italic">
@@ -447,7 +439,6 @@
             document.getElementById('trgovina-stats-modal').classList.remove('hidden');
         };
 
-        // ------------------ PLAČILA ------------------
         function naloziPlacila() {
             const list = document.getElementById('placila-list');
             list.innerHTML = "";
@@ -486,10 +477,9 @@
             naloziPlacila();
         };
 
-        // ------------------ KONTAKTI ------------------
         async function naloziKontakte() {
             const list = document.getElementById('kontakti-list');
-            list.innerHTML = "Nalagam...";
+            list.innerHTML = "<p class='text-center text-slate-400 italic text-xs mt-4'>Nalagam...</p>";
             const snap = await getDocs(collection(db, "kontakti"));
             list.innerHTML = "";
             snap.forEach(d => {
@@ -509,7 +499,7 @@
                         </div>
                         <p class="text-[11px] text-slate-600 italic mb-3"><span class="font-bold text-slate-400 uppercase">Naslov:</span> ${k.naslov || '/'}</p>
                         ${k.opombe ? `<div class="bg-indigo-50 p-2 rounded border border-indigo-100 text-[10px] text-indigo-800 italic mb-3">${k.opombe}</div>` : ''}
-                        <button onclick="showScreen('uradno'); setTimeout(()=> {document.getElementById('u-trgovina-filter').value='${k.firma}'; filterUradno('Vse', '${k.firma}');}, 100);" class="w-full bg-slate-100 py-2 rounded font-bold text-[10px] uppercase text-slate-600">Dokumenti podjetja</button>
+                        <button onclick="showScreen('uradno'); setTimeout(()=> {document.getElementById('u-trgovina-filter') ? document.getElementById('u-trgovina-filter').value='${k.firma}' : null; filterUradno('Vse', '${k.firma}');}, 100);" class="w-full bg-slate-100 py-2 rounded font-bold text-[10px] uppercase text-slate-600">Dokumenti podjetja</button>
                     </div>`;
             });
         }
@@ -531,10 +521,9 @@
             closeModal('kontakt-modal'); naloziKontakte();
         };
 
-        // ------------------ URADNO ------------------
         window.filterUradno = async (tip, specFirma = null) => {
             const list = document.getElementById('uradno-list');
-            list.innerHTML = "Nalagam...";
+            list.innerHTML = "<p class='text-center text-slate-400 italic text-xs mt-4'>Nalagam...</p>";
             const snap = await getDocs(collection(db, "dokumenti"));
             list.innerHTML = "";
             snap.forEach(d => {
@@ -563,7 +552,6 @@
             closeModal('uradno-modal'); filterUradno(data.tip);
         };
 
-        // ------------------ DROPDOWN FILL ------------------
         const trgPro = document.getElementById('sel-trg-pro');
         const trgPos = document.getElementById('sel-trg-pos');
         const editTrg = document.getElementById('edit-trg');
@@ -575,7 +563,6 @@
             trgPro.innerHTML += opt; trgPos.innerHTML += opt; editTrg.innerHTML += opt; kFirma.innerHTML += opt; uTrg.innerHTML += opt;
         });
 
-        // ------------------ ZALOGA, NABAVA, POŠILJKA INITIALIZATION ------------------
         const pList = document.getElementById('posiljka-list');
         Object.entries(kategorije).forEach(([kat, items]) => {
             pList.innerHTML += `<div class="category-header">${kat}</div>`;
@@ -599,7 +586,6 @@
             });
         }
 
-        // SAVE BUTTONS
         document.getElementById('btn-save-pro').onclick = async () => {
             const kol = parseInt(document.getElementById('input-prodaja-total').value);
             if (!kol) return;
@@ -629,7 +615,6 @@
             }
         };
 
-        // ADMIN LOGIC (Edit, Delete, Zaloga)
         async function naloziAdminZalogo() {
             const div = document.getElementById('admin-zaloga-edit');
             const snap = await getDoc(doc(db, "zaloga", "glavno_skladisce"));
@@ -659,6 +644,7 @@
                 div.innerHTML += `<div class="flex items-center justify-between p-2 border-b"><span>${t}</span><input type="number" step="0.1" class="admin-edit-input w-12 p-1 border rounded text-right bg-slate-50" value="${cena}" disabled onchange="window.updateCena('${t}', this.value)"></div>`;
             });
         }
+        
         window.updateCena = async (trg, val) => { await setDoc(doc(db, "nastavitve", "cenik"), { [trg]: parseFloat(val) }, { merge: true }); };
 
         window.toggleEditMode = () => {
@@ -703,13 +689,13 @@
                 }
                 const valZnesek = document.getElementById('edit-kol-znesek-container');
                 const valArtikli = document.getElementById('edit-artikli-container');
-                window.currentEditArtikli = data.artikli || {}; // Naloži shranjene artikle (pri starih logih bo to prazno)
+                window.currentEditArtikli = data.artikli || {};
 
                 if (data.tip === "Posiljka") {
                     valZnesek.classList.add('hidden'); valArtikli.classList.remove('hidden');
                     const listArtikli = document.getElementById('edit-artikli-list'); listArtikli.innerHTML = "";
                     Object.values(kategorije).flat().sort().forEach(n => {
-                        const kos = window.currentEditArtikli[n] || 0; // Tukaj vzame vrednost iz baze, če obstaja
+                        const kos = window.currentEditArtikli[n] || 0;
                         listArtikli.innerHTML += `<div class="flex justify-between items-center bg-slate-50 p-2 rounded"><span class="text-[10px] uppercase font-bold text-slate-600">${n}</span><input type="number" data-editname="${n}" class="edit-art-input w-16 p-1 text-center border rounded font-black text-main-teal" value="${kos}"></div>`;
                     });
                 } else {
@@ -743,7 +729,9 @@
 
         const today = new Date().toISOString().split('T')[0];
         document.getElementById('input-prodaja-datum').value = today; document.getElementById('input-posiljka-datum').value = today;
-        window.onload = () => showScreen('main-menu');
+        
+        // Inicializacija aplikacije na koncu izvajanja modula
+        showScreen('main-menu');
     </script>
 </body>
 </html>
