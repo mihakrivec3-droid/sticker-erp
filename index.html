@@ -78,12 +78,12 @@
         <!-- PRODANE NALEPKE STATISTIKA NA LANDING PAGU -->
         <div class="bg-white p-4 rounded-[20px] card-shadow border-l-4 border-yellow-500 flex justify-between items-center italic">
             <div>
-                <p id="label-prejsnji-mesec" class="text-[9px] uppercase font-black text-slate-400">Prodano (prejšnji mesec)</p>
-                <p id="dash-prodano-prejsnji-mesec" class="text-xl font-black text-main-teal">0 kos</p>
+                <p class="text-[9px] uppercase font-black text-slate-400">Prodano (ta mesec)</p>
+                <p id="dash-prodano-mesec" class="text-xl font-black text-main-teal">0 kos</p>
             </div>
             <div class="text-right border-l pl-4 border-slate-100">
-                <p class="text-[9px] uppercase font-black text-slate-400">Skupno prodane nalepke</p>
-                <p id="dash-prodano-skupno" class="text-xl font-black text-yellow-600">0 kos</p>
+                <p class="text-[9px] uppercase font-black text-slate-400">Prodano (od 1. junija)</p>
+                <p id="dash-prodano-leto" class="text-xl font-black text-yellow-600">0 kos</p>
             </div>
         </div>
 
@@ -388,23 +388,25 @@
         onSnapshot(collection(db, "transakcije"), (snap) => {
             let bruto = 0, stroski = 0, placanoNeto = 0;
             window.allTransactions = [];
-    
+            
             const now = new Date();
             const startOfCurrentMonth = new Date(now.getFullYear(), now.getMonth(), 1);
-            const startOfPrevMonth = new Date(now.getFullYear(), now.getMonth() - 1, 1);
+            
+            // Cikel za leto: od 1. junija dalje
+            let juneYear = now.getFullYear();
+            if (now.getMonth() < 5) { // Jan-Maj je prejšnje poslovno leto
+                juneYear -= 1;
+            }
+            const startOfJuneCycle = new Date(juneYear, 5, 1);
 
-            const imenaMesecev = ['januar', 'februar', 'marec', 'april', 'maj', 'junij', 'julij', 'avgust', 'september', 'oktober', 'november', 'december'];
-            const prevMonthIndex = (now.getMonth() - 1 + 12) % 12;
-            const prevMonthName = imenaMesecev[prevMonthIndex];
-
-            let prodanoPrejsnjiMesec = 0;
-            let prodanoSkupno = 0;
+            let prodanoTaMesec = 0;
+            let prodanoTaLeto = 0;
 
             snap.forEach(d => {
                 const data = d.data();
                 data.id = d.id;
                 window.allTransactions.push(data);
-        
+                
                 if(data.tip === "Prodaja") {
                     bruto += (data.znesek || 0);
                     if(data.placan) {
@@ -412,35 +414,16 @@
                         placanoNeto += (data.znesek || 0) / ddvFaktor;
                     }
 
-                    const kos = data.kolicina || 0;
-                    prodanoSkupno += kos; // Sešteva vse prodane nalepke od začetka
-
+                    // Preračun prodanih nalepk za mesec in leto (od junija)
                     const tDate = data.datum ? data.datum.toDate() : null;
-                    if(tDate && tDate >= startOfPrevMonth && tDate < startOfCurrentMonth) {
-                        prodanoPrejsnjiMesec += kos; // Samo za prejšnji mesec
+                    const kos = data.kolicina || 0;
+                    if(tDate) {
+                        if(tDate >= startOfCurrentMonth) prodanoTaMesec += kos;
+                        if(tDate >= startOfJuneCycle) prodanoTaLeto += kos;
                     }
                 }
                 if(data.tip === "Nabava") stroski += (data.strosek || 0);
             });
-    
-    const profit = placanoNeto - stroski;
-
-    document.getElementById('dash-bruto').innerText = `Bruto: ${bruto.toFixed(2)} €`;
-    document.getElementById('dash-neto').innerText = `${placanoNeto.toFixed(2)} €`;
-    document.getElementById('dash-stroski').innerText = `${stroski.toFixed(2)} €`;
-    document.getElementById('dash-profit').innerText = `${profit.toFixed(2)} €`;
-    
-    // Posodobitev statistike na pristajalni strani
-    const labelEl = document.getElementById('label-prejsnji-mesec');
-    if (labelEl) labelEl.innerText = `Prodano (${prevMonthName})`;
-    
-    document.getElementById('dash-prodano-prejsnji-mesec').innerText = `${prodanoPrejsnjiMesec} kos`;
-    document.getElementById('dash-prodano-skupno').innerText = `${prodanoSkupno} kos`;
-
-    if(document.getElementById('placila').classList.contains('active')) {
-        naloziPlacila();
-    }
-});
             
             const profit = placanoNeto - stroski;
 
