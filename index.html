@@ -9,6 +9,7 @@
     <link rel="apple-touch-icon" href="by%20Lepka%20logo.png">
     <link rel="icon" type="image/png" href="by%20Lepka%20logo.png">
     <meta name="theme-color" content="#447B7A">
+    <meta name="mobile-web-app-capable" content="yes">
     <meta name="apple-mobile-web-app-capable" content="yes">
     <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
 
@@ -75,7 +76,7 @@
 
     <!-- GLAVNI MENI / LANDING PAGE -->
     <div id="main-menu" class="screen active p-6 space-y-4 max-w-md mx-auto">
-        <!-- PRODANE NALEPKE STATISTIKA NA LANDING PAGU -->
+        <!-- STATISTIKA PRODANIH NALEPK NA PRVI STRANI -->
         <div class="bg-white p-4 rounded-[20px] card-shadow border-l-4 border-yellow-500 flex justify-between items-center italic">
             <div>
                 <p id="label-prejsnji-mesec" class="text-[9px] uppercase font-black text-slate-400">Prodano (prejšnji mesec)</p>
@@ -88,83 +89,108 @@
         </div>
 
         <div class="grid grid-cols-2 gap-4">
-            <button onclick="showScreen('posiljka')" class="bg-white p-5 rounded-[20px] card-shadow border-b-4 border-light-teal flex flex-col items-center hover:bg-slate-50 transition-all"><span class="text-3xl mb-1">📦</span><span class="text-light-teal font-black text-[10px] uppercase italic">Pošiljka</span></button>
-            <button onclick="showScreen('prodaja')" class="bg-white p-5 rounded-[20px] card-shadow border-b-4 border-yellow-500 flex flex-col items-center hover:bg-slate-50 transition-all"><span class="text-3xl mb-1">💰</span><span class="text-yellow-600 font-black text-[10px] uppercase italic">Prodaja</span></button>
-            <button onclick="showScreen('stroski')" class="bg-white p-5 rounded-[20px] card-shadow border-b-4 border-red-500 flex flex-col items-center hover:bg-slate-50 transition-all"><span class="text-3xl mb-1">📉</span><span class="text-red-600 font-black text-[10px] uppercase italic">Stroški</span></button>
-            <button onclick="showScreen('placila')" class="bg-white p-5 rounded-[20px] card-shadow border-b-4 border-green-600 flex flex-col items-center hover:bg-slate-50 transition-all"><span class="text-3xl mb-1">💳</span><span class="text-green-700 font-black text-[10px] uppercase italic">Plačila</span></button>
+            <button onclick="showScreen('posiljka')" class="bg-white p-5 rounded-[20px] card-shadow border-b-4 border-light-teal flex flex-col items-center hover:bg-slate-50 active:scale-95 transition-all"><span class="text-3xl mb-1">📦</span><span class="text-light-teal font-black text-[10px] uppercase italic">Pošiljka</span></button>
+            <button onclick="showScreen('prodaja')" class="bg-white p-5 rounded-[20px] card-shadow border-b-4 border-yellow-500 flex flex-col items-center hover:bg-slate-50 active:scale-95 transition-all"><span class="text-3xl mb-1">💰</span><span class="text-yellow-600 font-black text-[10px] uppercase italic">Prodaja</span></button>
+            <button onclick="showScreen('stroski')" class="bg-white p-5 rounded-[20px] card-shadow border-b-4 border-red-500 flex flex-col items-center hover:bg-slate-50 active:scale-95 transition-all"><span class="text-3xl mb-1">📉</span><span class="text-red-600 font-black text-[10px] uppercase italic">Stroški / Nabava</span></button>
+            <button onclick="showScreen('placila')" class="bg-white p-5 rounded-[20px] card-shadow border-b-4 border-green-600 flex flex-col items-center hover:bg-slate-50 active:scale-95 transition-all"><span class="text-3xl mb-1">💳</span><span class="text-green-700 font-black text-[10px] uppercase italic">Plačila</span></button>
         </div>
         <div class="grid grid-cols-2 gap-4">
-            <button onclick="showScreen('zaloga')" class="bg-white p-5 rounded-[20px] card-shadow border-b-4 border-amber-600 flex flex-col items-center hover:bg-slate-50 transition-all"><span class="text-3xl mb-1">📊</span><span class="text-amber-700 font-black text-[10px] uppercase italic">Zaloga</span></button>
-            <button onclick="showScreen('stats')" class="bg-light-teal p-5 rounded-[20px] card-shadow border-b-4 border-main-teal flex flex-col items-center text-white hover:opacity-90 transition-all"><span class="text-3xl mb-1">📈</span><span class="font-black text-[10px] uppercase italic tracking-wider">Analitika</span></button>
+            <button onclick="showScreen('zaloga')" class="bg-white p-5 rounded-[20px] card-shadow border-b-4 border-amber-600 flex flex-col items-center hover:bg-slate-50 active:scale-95 transition-all"><span class="text-3xl mb-1">📊</span><span class="text-amber-700 font-black text-[10px] uppercase italic">Zaloga</span></button>
+            <button onclick="showScreen('stats')" class="bg-light-teal p-5 rounded-[20px] card-shadow border-b-4 border-main-teal flex flex-col items-center text-white hover:opacity-90 active:scale-95 transition-all"><span class="text-3xl mb-1">📈</span><span class="font-black text-[10px] uppercase italic tracking-wider">Analitika</span></button>
         </div>
         <div class="grid grid-cols-2 gap-4">
-            <button onclick="showScreen('kontakti')" class="bg-white p-5 rounded-[20px] card-shadow border-b-4 border-indigo-500 flex flex-col items-center hover:bg-slate-50 transition-all"><span class="text-3xl mb-1">📞</span><span class="text-indigo-600 font-black text-[10px] uppercase italic">Kontakti</span></button>
-            <button onclick="showScreen('uradno')" class="bg-slate-800 p-5 rounded-[20px] card-shadow border-b-4 border-slate-600 flex flex-col items-center hover:bg-slate-700 transition-all text-white"><span class="text-3xl mb-1">📁</span><span class="font-black text-[10px] uppercase italic">Uradno</span></button>
+            <button onclick="showScreen('kontakti')" class="bg-white p-5 rounded-[20px] card-shadow border-b-4 border-indigo-500 flex flex-col items-center hover:bg-slate-50 active:scale-95 transition-all"><span class="text-3xl mb-1">📞</span><span class="text-indigo-600 font-black text-[10px] uppercase italic">Kontakti</span></button>
+            <button onclick="showScreen('uradno')" class="bg-slate-800 p-5 rounded-[20px] card-shadow border-b-4 border-slate-600 flex flex-col items-center hover:bg-slate-700 active:scale-95 transition-all text-white"><span class="text-3xl mb-1">📁</span><span class="font-black text-[10px] uppercase italic">Uradno</span></button>
         </div>
     </div>
 
     <!-- STROŠKI / NABAVA -->
     <div id="stroski" class="screen p-6 max-w-md mx-auto pb-32">
         <button onclick="showScreen('main-menu')" class="mb-4 text-main-teal font-bold uppercase text-[10px] bg-white px-3 py-1 rounded-full shadow-sm">← Nazaj</button>
-        <h2 class="text-3xl font-black mb-6 uppercase text-red-600 italic tracking-tighter">Novi Stroški</h2>
+        <h2 class="text-3xl font-black mb-6 uppercase text-red-600 italic tracking-tighter">Stroški in Nabava</h2>
         
         <select id="input-strosek-kategorija" onchange="toggleStrosekType()" class="w-full p-4 bg-white rounded-xl mb-4 font-bold border-2 border-red-100 shadow-sm italic outline-none text-slate-700">
-            <option value="Nakup nalepk">Nakup nalepk (dodaj v zalogo)</option>
-            <option value="Drugi stroški">Drugi stroški</option>
+            <option value="Nakup nalepk">Nakup nalepk (posodobi zalogo)</option>
+            <option value="Drugi stroški">Drugi stroški (brez spremembe zaloge)</option>
         </select>
         
-        <input type="text" id="input-strosek-opis" placeholder="Kratek opis (npr. Račun #123, Znamke...)" class="w-full p-4 bg-white rounded-xl mb-4 font-bold border border-red-100 shadow-sm italic outline-none text-slate-600">
+        <input type="text" id="input-strosek-opis" placeholder="Kratek opis (npr. Dotisk 1000 kos, Znamke, Embalaža...)" class="w-full p-4 bg-white rounded-xl mb-4 font-bold border border-red-100 shadow-sm italic outline-none text-slate-600">
         <input type="date" id="input-strosek-datum" class="w-full p-4 bg-white rounded-xl mb-6 font-bold border border-red-100 shadow-sm italic outline-none text-slate-600">
         
-        <!-- SEZNAM NALEPK ZA DODAJANJE V ZALOGO PRATIKČNO -->
+        <div class="bg-gradient-to-br from-red-50 to-white p-6 rounded-[25px] border-2 border-red-200 mb-6 text-center text-red-600 italic shadow-inner">
+            <input type="number" step="0.01" id="input-strosek-znesek" class="text-5xl font-black w-full text-center outline-none bg-transparent placeholder-red-200" placeholder="0.00">
+            <p class="text-[10px] uppercase font-bold mt-2 opacity-70">Skupni Znesek Stroška v €</p>
+        </div>
+
+        <!-- SEZNAM NALEPK ZA DODAJANJE V ZALOGO -->
         <div id="strosek-nalepke-box" class="mb-6">
             <p class="text-xs font-black uppercase text-red-600 mb-2 italic">Kupljene nalepke (se prištejejo v zalogo):</p>
             <div id="strosek-nalepke-list" class="space-y-1"></div>
         </div>
 
-        <div class="bg-gradient-to-br from-red-50 to-white p-8 rounded-[30px] border-2 border-red-200 mb-8 text-center text-red-600 italic shadow-inner">
-            <input type="number" step="0.01" id="input-strosek-znesek" class="text-7xl font-black w-full text-center outline-none bg-transparent placeholder-red-200" placeholder="0.00">
-            <p class="text-xs uppercase font-bold mt-2 opacity-70">Skupni Strošek v €</p>
-        </div>
-        <button id="btn-save-strosek" class="w-full bg-red-500 text-white py-5 rounded-2xl font-black text-lg shadow-lg uppercase italic tracking-widest hover:bg-red-600 transition-all">Zabeleži strošek</button>
+        <button id="btn-save-strosek" class="w-full bg-red-500 text-white py-5 rounded-2xl font-black text-lg shadow-lg uppercase italic tracking-widest hover:bg-red-600 active:scale-95 transition-all">Zabeleži strošek</button>
     </div>
 
-    <!-- ZALOGA -->
-    <div id="zaloga" class="screen p-6 max-w-md mx-auto">
+    <!-- ZALOGA (Glavno skladišče + Zaloga v trgovinah) -->
+    <div id="zaloga" class="screen p-6 max-w-md mx-auto pb-32">
         <button onclick="showScreen('main-menu')" class="mb-4 text-main-teal font-bold uppercase text-[10px] bg-white px-3 py-1 rounded-full shadow-sm">← Nazaj</button>
-        <h2 class="text-3xl font-black mb-6 uppercase text-amber-700 italic tracking-tighter">Zaloga</h2>
-        <div id="zaloga-container" class="space-y-4"></div>
+        <h2 class="text-3xl font-black mb-4 uppercase text-amber-700 italic tracking-tighter">Zaloga</h2>
+        
+        <div class="flex gap-2 mb-6">
+            <button id="tab-zaloga-glavna" onclick="switchZalogaTab('glavna')" class="flex-1 py-3 rounded-xl border font-black text-xs uppercase transition-all bg-amber-600 text-white border-amber-600 shadow-md">Glavno skladišče</button>
+            <button id="tab-zaloga-trgovine" onclick="switchZalogaTab('trgovine')" class="flex-1 py-3 rounded-xl border font-black text-xs uppercase transition-all bg-white text-slate-600 border-slate-200 shadow-sm">V trgovinah</button>
+        </div>
+
+        <div id="zaloga-glavna-wrapper">
+            <div id="zaloga-container" class="space-y-4"></div>
+        </div>
+
+        <div id="zaloga-trgovine-wrapper" class="hidden">
+            <p class="text-[10px] text-slate-500 mb-3 italic">Izračun trenutne zaloge pri strankah (Vse poslane nalepke minus vse prodane nalepke):</p>
+            <div id="zaloga-trgovine-container" class="space-y-2"></div>
+        </div>
     </div>
 
     <!-- KONTAKTI -->
     <div id="kontakti" class="screen p-6 max-w-md mx-auto pb-32">
         <button onclick="showScreen('main-menu')" class="mb-4 text-main-teal font-bold uppercase text-[10px] bg-white px-3 py-1 rounded-full shadow-sm">← Nazaj</button>
-        <div class="flex justify-between items-center mb-6">
+        <div class="flex justify-between items-center mb-2">
             <h2 class="text-3xl font-black uppercase text-indigo-600 italic tracking-tighter">Kontakti</h2>
-            <button onclick="openKontaktModal()" class="bg-indigo-600 text-white px-4 py-2 rounded-xl text-xs font-black uppercase">+ Nov</button>
+            <button onclick="openKontaktModal()" class="bg-indigo-600 text-white px-4 py-2 rounded-xl text-xs font-black uppercase shadow-md">+ Nov</button>
         </div>
+        <p class="text-[10px] text-slate-400 italic mb-5">Klikni na osebo za ogled vseh podatkov, urejanje ali dokumente.</p>
         <div id="kontakti-list" class="space-y-3"></div>
     </div>
 
-    <!-- URADNO -->
+    <!-- URADNO (Dobavnice / Računi) -->
     <div id="uradno" class="screen p-6 max-w-md mx-auto pb-32">
         <button onclick="showScreen('main-menu')" class="mb-4 text-main-teal font-bold uppercase text-[10px] bg-white px-3 py-1 rounded-full shadow-sm">← Nazaj</button>
         <h2 class="text-3xl font-black mb-6 uppercase text-slate-800 italic tracking-tighter">Uradno</h2>
-        <div class="flex gap-2 mb-6">
+        
+        <div class="flex gap-2 mb-4">
             <button id="tab-dobavnica" onclick="filterUradno('Dobavnica')" class="flex-1 py-3 rounded-xl border font-black text-xs uppercase transition-all bg-slate-800 text-white border-slate-800 shadow-md">Dobavnice</button>
             <button id="tab-racun" onclick="filterUradno('Racun')" class="flex-1 py-3 rounded-xl border font-black text-xs uppercase transition-all bg-white text-slate-600 border-slate-200 shadow-sm">Računi</button>
+            <button id="tab-vse" onclick="filterUradno('Vse')" class="px-3 py-3 rounded-xl border font-black text-xs uppercase transition-all bg-white text-slate-600 border-slate-200 shadow-sm">Vse</button>
         </div>
-        <button onclick="openUradnoModal()" class="w-full bg-slate-800 text-white py-4 rounded-xl font-black text-sm uppercase italic mb-6">+ Dodaj nov dokument</button>
+
+        <!-- Prikaz aktivnega filtra trgovine (ko pridemo iz Kontaktov) -->
+        <div id="uradno-active-filter" class="hidden bg-indigo-50 border border-indigo-200 text-indigo-800 px-3 py-2 rounded-xl mb-4 flex justify-between items-center text-xs font-bold italic">
+            <span id="uradno-filter-text">Filter: </span>
+            <button onclick="filterUradno('Vse', null)" class="text-indigo-600 font-black uppercase text-[10px] bg-white px-2 py-1 rounded border">Pokaži vse ✕</button>
+        </div>
+
+        <button onclick="openUradnoModal()" class="w-full bg-slate-800 text-white py-4 rounded-xl font-black text-sm uppercase italic mb-6 shadow-md">+ Naloži nov dokument</button>
         <div id="uradno-list" class="space-y-3"></div>
     </div>
 
     <!-- PLAČILA -->
     <div id="placila" class="screen p-6 max-w-md mx-auto pb-32">
         <button onclick="showScreen('main-menu')" class="mb-4 text-main-teal font-bold uppercase text-[10px] bg-white px-3 py-1 rounded-full shadow-sm">← Nazaj</button>
-        <h2 class="text-3xl font-black mb-6 uppercase text-green-700 italic tracking-tighter">Plačila</h2>
+        <h2 class="text-3xl font-black mb-4 uppercase text-green-700 italic tracking-tighter">Plačila</h2>
         <div class="flex gap-2 mb-4">
-            <button id="btn-filter-neplacano" onclick="togglePlacilaTab('neplacano')" class="flex-1 py-2 rounded-lg font-black text-xs uppercase bg-green-700 text-white">Čakajoča</button>
-            <button id="btn-filter-vsa" onclick="togglePlacilaTab('vsa')" class="flex-1 py-2 rounded-lg font-black text-xs uppercase bg-white text-slate-600 border">Vsa plačila</button>
+            <button id="btn-filter-vsa" onclick="togglePlacilaTab('vsa')" class="flex-1 py-2.5 rounded-xl font-black text-xs uppercase bg-green-700 text-white shadow-sm">Vse prodaje</button>
+            <button id="btn-filter-neplacano" onclick="togglePlacilaTab('neplacano')" class="flex-1 py-2.5 rounded-xl font-black text-xs uppercase bg-white text-slate-600 border">Neplačano</button>
+            <button id="btn-filter-placano" onclick="togglePlacilaTab('placano')" class="flex-1 py-2.5 rounded-xl font-black text-xs uppercase bg-white text-slate-600 border">Plačano</button>
         </div>
         <div id="placila-list" class="space-y-3"></div>
     </div>
@@ -174,14 +200,14 @@
         <button onclick="showScreen('main-menu')" class="mb-4 text-main-teal font-bold uppercase text-[10px] bg-white px-3 py-1 rounded-full shadow-sm">← Nazaj</button>
         <h2 class="text-3xl font-black mb-6 uppercase text-main-teal italic tracking-tighter">Analitika</h2>
         
-        <h3 class="font-black text-yellow-600 uppercase text-[11px] mb-3 pl-2 border-l-4 border-yellow-500">Trgovine (Klikni za detajle)</h3>
-        <div id="stats-trgovine-list" class="space-y-3 mb-8"></div>
+        <h3 class="font-black text-yellow-600 uppercase text-[11px] mb-2 pl-2 border-l-4 border-yellow-500">Trgovine (Klikni za prodane in poslane nalepke)</h3>
+        <div id="stats-trgovine-list" class="space-y-2.5 mb-8"></div>
 
-        <h3 class="font-black text-main-teal uppercase text-[11px] mb-3 pl-2 border-l-4 border-main-teal">Skupno poslane nalepke</h3>
-        <p class="text-[9px] text-slate-400 mb-2 italic">*Vključuje vse poslane nalepke od samega začetka.</p>
+        <h3 class="font-black text-main-teal uppercase text-[11px] mb-2 pl-2 border-l-4 border-main-teal">Skupno poslane nalepke (Celotna zgodovina)</h3>
+        <p class="text-[9px] text-slate-400 mb-3 italic">*Vključuje vse vnose iz zgodovine od prvega do zadnjega.</p>
         <div id="stats-nalepke-top" class="space-y-3 mb-3"></div>
         <div id="stats-nalepke-rest" class="space-y-2 hidden mb-3"></div>
-        <button onclick="toggleVisibility('stats-nalepke-rest', this)" class="w-full text-center bg-white text-main-teal py-2 rounded-xl text-[10px] font-bold uppercase tracking-wider mb-8 border border-main-teal shadow-sm">Prikaži vse nalepke ↓</button>
+        <button onclick="toggleVisibility('stats-nalepke-rest', this)" class="w-full text-center bg-white text-main-teal py-2.5 rounded-xl text-[10px] font-bold uppercase tracking-wider mb-8 border border-main-teal shadow-sm">Prikaži vse nalepke ↓</button>
     </div>
 
     <!-- ADMIN -->
@@ -194,57 +220,108 @@
         </div>
 
         <details class="mb-4 bg-white rounded-xl shadow-sm border border-slate-200">
-            <summary class="font-black text-yellow-600 uppercase text-[10px] p-4 border-l-4 border-yellow-500 rounded-l-lg outline-none">Nastavitev cenika ▼</summary>
-            <div id="admin-cenik-list" class="p-4 border-t italic text-[10px]"></div>
+            <summary class="font-black text-yellow-600 uppercase text-xs p-4 border-l-4 border-yellow-500 rounded-l-lg outline-none flex justify-between items-center">
+                <span>Nastavitev cenika</span><span>▼</span>
+            </summary>
+            <div id="admin-cenik-list" class="p-4 border-t italic text-xs"></div>
         </details>
 
         <details class="mb-4 bg-white rounded-xl shadow-sm border border-slate-200">
-            <summary class="font-black text-main-teal uppercase text-[10px] p-4 border-l-4 border-main-teal rounded-l-lg outline-none">Popravek stanja zaloge ▼</summary>
+            <summary class="font-black text-main-teal uppercase text-xs p-4 border-l-4 border-main-teal rounded-l-lg outline-none flex justify-between items-center">
+                <span>Popravek stanja zaloge</span><span>▼</span>
+            </summary>
             <div id="admin-zaloga-edit" class="p-4 border-t"></div>
         </details>
 
         <details class="mb-4 bg-white rounded-xl shadow-sm border border-slate-200">
-            <summary class="font-black text-slate-500 uppercase text-[10px] p-4 border-l-4 border-slate-400 rounded-l-lg outline-none">Celotna Zgodovina (Log) ▼</summary>
+            <summary class="font-black text-slate-600 uppercase text-xs p-4 border-l-4 border-slate-400 rounded-l-lg outline-none flex justify-between items-center">
+                <span>Celotna Zgodovina (Log)</span><span>▼</span>
+            </summary>
             <div class="p-4 border-t">
-                <p class="text-[9px] text-slate-400 mb-4 italic">Urejanje zgodovine pošiljk avtomatsko popravi glavno zalogo.</p>
+                <p class="text-[9px] text-slate-400 mb-4 italic">Urejanje ali brisanje pošiljk in nabave avtomatsko preračuna glavno zalogo.</p>
                 <div id="admin-log-list" class="space-y-2 italic text-[10px]"></div>
             </div>
         </details>
     </div>
 
-    <!-- MODALI -->
+    <!-- PRODAJA -->
+    <div id="prodaja" class="screen p-6 max-w-md mx-auto pb-32">
+        <button onclick="showScreen('main-menu')" class="mb-4 text-main-teal font-bold uppercase text-[10px] bg-white px-3 py-1 rounded-full shadow-sm">← Nazaj</button>
+        <h2 class="text-3xl font-black mb-6 uppercase text-yellow-600 italic tracking-tighter">Nova Prodaja</h2>
+        <select id="sel-trg-pro" class="w-full p-4 bg-white rounded-xl mb-4 font-bold border-2 border-yellow-100 shadow-sm italic outline-none"></select>
+        <input type="date" id="input-prodaja-datum" class="w-full p-4 bg-white rounded-xl mb-4 font-bold border-2 border-yellow-100 shadow-sm italic outline-none text-slate-600">
+        
+        <!-- Stikalo za način vnosa prodaje -->
+        <div class="flex items-center gap-3 mb-6 bg-white p-3.5 rounded-xl border border-yellow-100 shadow-sm justify-center">
+            <span class="text-[10px] font-black uppercase text-yellow-600" id="lbl-hitri">Samo skupno število</span>
+            <label class="switch"><input type="checkbox" id="toggle-prodaja-nacin" onchange="toggleProdajaNacin()"><span class="slider"></span></label>
+            <span class="text-[10px] font-bold uppercase text-slate-400" id="lbl-podrobno">Točno po nalepkah</span>
+        </div>
+
+        <div id="prodaja-hitri" class="bg-gradient-to-br from-yellow-50 to-white p-8 rounded-[30px] border-2 border-yellow-200 mb-8 text-center text-yellow-600 italic shadow-inner">
+            <input type="number" id="input-prodaja-total" class="text-7xl font-black w-full text-center outline-none bg-transparent" placeholder="0">
+            <p class="text-[10px] uppercase font-bold mt-2 opacity-70">Skupaj prodanih kosov</p>
+        </div>
+
+        <div id="prodaja-podrobno" class="hidden mb-8">
+            <p class="text-[10px] text-slate-500 mb-2 italic font-bold">Vpiši prodane količine po posameznih dizajnih:</p>
+            <div id="prodaja-artikli-list" class="space-y-1"></div>
+        </div>
+
+        <button id="btn-save-pro" class="w-full bg-yellow-500 text-white py-5 rounded-2xl font-black text-lg shadow-lg uppercase italic tracking-widest hover:bg-yellow-600 active:scale-95 transition-all">Vnesi prodajo</button>
+    </div>
+
+    <!-- POŠILJKA -->
+    <div id="posiljka" class="screen p-6 max-w-md mx-auto">
+        <button onclick="showScreen('main-menu')" class="mb-4 text-main-teal font-bold uppercase text-[10px] bg-white px-3 py-1 rounded-full shadow-sm">← Nazaj</button>
+        <h2 class="text-3xl font-black mb-6 uppercase text-main-teal italic tracking-tighter">Nova Pošiljka</h2>
+        <select id="sel-trg-pos" class="w-full p-4 bg-white rounded-xl mb-4 font-bold border border-light-teal shadow-sm italic outline-none"></select>
+        <input type="date" id="input-posiljka-datum" class="w-full p-4 bg-white rounded-xl mb-4 font-bold border border-light-teal shadow-sm italic outline-none text-slate-600">
+        <div id="posiljka-list" class="mb-28"></div>
+        <div class="fixed bottom-0 left-0 right-0 p-4 bg-white/95 border-t z-50 backdrop-blur-md">
+            <button id="btn-save-pos" class="w-full max-w-md mx-auto block bg-main-teal text-white py-5 rounded-2xl font-black text-lg shadow-lg uppercase italic tracking-widest hover:bg-[#356160] active:scale-95 transition-all">Pošlji zalogo</button>
+        </div>
+    </div>
+
+    <!-- ==================== MODALI ==================== -->
+
     <!-- UREJANJE ZGODOVINE / TRANSAKCIJE -->
     <div id="edit-modal" class="hidden fixed inset-0 bg-black/60 z-[100] flex items-center justify-center p-4 backdrop-blur-sm">
         <div class="bg-white p-6 rounded-2xl w-full max-w-sm shadow-2xl relative max-h-[90vh] flex flex-col">
-            <h3 class="font-black text-main-teal uppercase text-lg italic mb-4">Uredi vnos</h3>
+            <h3 class="font-black text-main-teal uppercase text-lg italic mb-3">Uredi vnos</h3>
             <input type="hidden" id="edit-id">
             <input type="hidden" id="edit-tip">
             
             <div class="space-y-3 text-sm font-bold italic text-slate-600 overflow-y-auto pr-2 pb-2 flex-1">
                 <div><label class="text-[10px] uppercase text-slate-400">Datum</label><input type="date" id="edit-datum" class="w-full p-2 border rounded-lg bg-slate-50 outline-none"></div>
                 <div id="edit-trg-container"><label class="text-[10px] uppercase text-slate-400">Trgovina</label><select id="edit-trg" class="w-full p-2 border rounded-lg bg-slate-50 outline-none"></select></div>
+                <div id="edit-opis-container" class="hidden"><label class="text-[10px] uppercase text-slate-400">Opis stroška</label><input type="text" id="edit-opis" class="w-full p-2 border rounded-lg bg-slate-50 outline-none"></div>
                 
                 <div id="edit-kol-znesek-container" class="grid grid-cols-2 gap-3">
-                    <div><label class="text-[10px] uppercase text-slate-400">Količina</label><input type="number" id="edit-kol" class="w-full p-2 border rounded text-center"></div>
-                    <div><label class="text-[10px] uppercase text-slate-400">Znesek (€)</label><input type="number" step="0.01" id="edit-znesek" class="w-full p-2 border rounded text-center"></div>
+                    <div id="edit-kol-wrapper"><label class="text-[10px] uppercase text-slate-400">Količina (kos)</label><input type="number" id="edit-kol" class="w-full p-2 border rounded text-center font-black text-main-teal"></div>
+                    <div><label id="edit-znesek-label" class="text-[10px] uppercase text-slate-400">Znesek (€)</label><input type="number" step="0.01" id="edit-znesek" class="w-full p-2 border rounded text-center font-black text-yellow-600"></div>
                 </div>
 
                 <div id="edit-artikli-container" class="hidden mt-2 border-t pt-3">
-                    <label class="text-[10px] uppercase text-slate-400 mb-2 block">Postavke Nalepk</label>
+                    <div class="flex justify-between items-center mb-2 bg-amber-50 p-2 rounded border border-amber-200 text-[10px]">
+                        <span id="edit-old-kol-info" class="text-amber-800 font-bold">Prvotno vpisano: 0 kos</span>
+                        <span id="edit-live-sum" class="text-main-teal font-black">Nov seštevek: 0 kos</span>
+                    </div>
+                    <label class="text-[10px] uppercase text-slate-400 mb-2 block">Posamezne nalepke:</label>
                     <div id="edit-artikli-list" class="space-y-1"></div>
                 </div>
             </div>
             <div class="flex gap-3 mt-4 pt-4 border-t">
                 <button onclick="closeModal('edit-modal')" class="flex-1 bg-slate-200 py-3 rounded-xl font-bold uppercase text-xs">Prekliči</button>
-                <button onclick="saveEdit()" class="flex-1 bg-main-teal text-white py-3 rounded-xl font-black uppercase text-xs">Shrani</button>
+                <button onclick="saveEdit()" class="flex-1 bg-main-teal text-white py-3 rounded-xl font-black uppercase text-xs shadow-md">Shrani</button>
             </div>
         </div>
     </div>
 
-    <!-- POTRDI PLAČILO -->
+    <!-- POTRDI / UREDI PLAČILO IN DDV -->
     <div id="placilo-modal" class="hidden fixed inset-0 bg-black/60 z-[100] flex items-center justify-center p-4 backdrop-blur-sm">
         <div class="bg-white p-6 rounded-2xl w-full max-w-sm shadow-2xl relative">
-            <h3 class="font-black text-green-700 uppercase text-lg italic mb-4">Potrdi / Nastavi plačilo</h3>
+            <h3 class="font-black text-green-700 uppercase text-lg italic mb-4">Status plačila in DDV</h3>
             <input type="hidden" id="placilo-id">
             <div class="space-y-4 font-bold italic text-slate-600">
                 <div class="flex justify-between items-center p-3 bg-slate-50 border rounded-lg">
@@ -253,17 +330,71 @@
                 </div>
                 <div>
                     <label class="text-[10px] uppercase text-slate-400">Stopnja DDV (%)</label>
-                    <input type="number" id="placilo-ddv-val" value="10" class="w-full p-3 border rounded-lg bg-slate-50 outline-none text-center font-black">
+                    <input type="number" step="0.1" id="placilo-ddv-val" value="10" class="w-full p-3 border rounded-lg bg-slate-50 outline-none text-center font-black">
                 </div>
             </div>
-            <div class="flex gap-3 mt-6">
-                <button onclick="closeModal('placilo-modal')" class="flex-1 bg-slate-200 py-3 rounded-xl font-bold uppercase text-xs">Prekliči</button>
-                <button onclick="potrdiPlaciloDb()" class="flex-1 bg-green-600 text-white py-3 rounded-xl font-black uppercase text-xs">Plačano</button>
+            <div class="flex flex-col gap-2 mt-6">
+                <button onclick="potrdiPlaciloDb(true)" class="w-full bg-green-600 text-white py-3 rounded-xl font-black uppercase text-xs shadow-md">Označi kot PLAČANO ✓</button>
+                <button id="btn-razveljavi-placilo" onclick="potrdiPlaciloDb(false)" class="w-full bg-amber-100 text-amber-800 py-2.5 rounded-xl font-black uppercase text-[10px]">Označi kot NEPLAČANO (Čaka)</button>
+                <button onclick="closeModal('placilo-modal')" class="w-full bg-slate-200 text-slate-600 py-2.5 rounded-xl font-bold uppercase text-xs">Prekliči</button>
             </div>
         </div>
     </div>
 
-    <!-- KONTAKT MODAL -->
+    <!-- PODROBEN OGLED KONTAKTA -->
+    <div id="kontakt-view-modal" class="hidden fixed inset-0 bg-black/60 z-[100] flex items-center justify-center p-4 backdrop-blur-sm">
+        <div class="bg-white p-6 rounded-2xl w-full max-w-sm shadow-2xl relative max-h-[90vh] overflow-y-auto">
+            <div class="flex justify-between items-start mb-4 border-b pb-3">
+                <div>
+                    <h3 id="kv-ime" class="font-black text-indigo-700 uppercase text-xl italic">Ime Osebe</h3>
+                    <span id="kv-firma" class="text-[10px] font-black text-white uppercase bg-indigo-600 px-2.5 py-0.5 rounded-full inline-block mt-1">Podjetje</span>
+                </div>
+                <button onclick="closeModal('kontakt-view-modal')" class="text-slate-400 font-black text-lg px-2">✕</button>
+            </div>
+
+            <div class="space-y-3 text-xs italic text-slate-600 mb-6">
+                <div class="bg-slate-50 p-3 rounded-xl border">
+                    <p class="text-[9px] font-black uppercase text-slate-400 mb-1">Podatki podjetja (DŠ, TRR...)</p>
+                    <p id="kv-podatki" class="font-bold text-slate-700 whitespace-pre-line">-</p>
+                </div>
+                <div class="bg-slate-50 p-3 rounded-xl border">
+                    <p class="text-[9px] font-black uppercase text-slate-400 mb-1">Naslov za dostavo nalepk</p>
+                    <p id="kv-naslov" class="font-bold text-slate-700">-</p>
+                </div>
+                
+                <!-- Direktne povezave za komunikacijo -->
+                <div class="grid grid-cols-1 gap-2 pt-1">
+                    <a id="kv-telefon-wrap" href="#" class="flex items-center justify-between bg-green-50 border border-green-200 p-3 rounded-xl text-green-800 font-bold">
+                        <span>📞 Telefon: <strong id="kv-telefon"></strong></span>
+                        <span class="text-[10px] uppercase font-black bg-white px-2 py-1 rounded shadow-sm">Pokliči</span>
+                    </a>
+                    <a id="kv-whatsapp-wrap" href="#" target="_blank" class="flex items-center justify-between bg-emerald-50 border border-emerald-200 p-3 rounded-xl text-emerald-800 font-bold">
+                        <span>💬 WhatsApp: <strong id="kv-whatsapp"></strong></span>
+                        <span class="text-[10px] uppercase font-black bg-white px-2 py-1 rounded shadow-sm">Piši</span>
+                    </a>
+                    <a id="kv-email-wrap" href="#" class="flex items-center justify-between bg-blue-50 border border-blue-200 p-3 rounded-xl text-blue-800 font-bold">
+                        <span class="truncate pr-2">✉️ <strong id="kv-email"></strong></span>
+                        <span class="text-[10px] uppercase font-black bg-white px-2 py-1 rounded shadow-sm shrink-0">Pošlji mail</span>
+                    </a>
+                </div>
+
+                <div class="bg-indigo-50 p-3 rounded-xl border border-indigo-100">
+                    <p class="text-[9px] font-black uppercase text-indigo-400 mb-1">Opombe / Glavna nit komunikacije</p>
+                    <p id="kv-opombe" class="font-bold text-indigo-900 whitespace-pre-line">-</p>
+                </div>
+            </div>
+
+            <div class="space-y-2">
+                <button id="kv-btn-dokumenti" class="w-full bg-slate-800 text-white py-3 rounded-xl font-black text-xs uppercase italic shadow-md">📁 Odpri račune in dobavnice stranke</button>
+                <div class="flex gap-2">
+                    <button id="kv-btn-uredi" class="flex-1 bg-indigo-100 text-indigo-700 py-3 rounded-xl font-black text-xs uppercase">✏️ Uredi podatke</button>
+                    <button id="kv-btn-izbrisi" class="bg-red-50 text-red-600 px-4 py-3 rounded-xl font-black text-xs uppercase">🗑️</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- UREDI / NOV KONTAKT MODAL -->
     <div id="kontakt-modal" class="hidden fixed inset-0 bg-black/60 z-[100] flex items-center justify-center p-4 backdrop-blur-sm">
         <div class="bg-white p-6 rounded-2xl w-full max-w-sm shadow-2xl relative max-h-[90vh] overflow-y-auto">
             <h3 class="font-black text-indigo-600 uppercase text-lg italic mb-4" id="kontakt-modal-title">Nov Kontakt</h3>
@@ -271,76 +402,77 @@
             <div class="space-y-3 text-xs font-bold italic text-slate-600">
                 <div><label class="text-[10px] uppercase text-slate-400">Ime in Priimek</label><input type="text" id="k-ime" class="w-full p-3 border rounded-lg bg-slate-50"></div>
                 <div><label class="text-[10px] uppercase text-slate-400">Podjetje / Trgovina</label><select id="k-firma" class="w-full p-3 border rounded-lg bg-slate-50"></select></div>
-                <div><label class="text-[10px] uppercase text-slate-400">Podatki (DŠ, TRR...)</label><textarea id="k-podatki" class="w-full p-3 border rounded-lg bg-slate-50 h-20"></textarea></div>
-                <div><label class="text-[10px] uppercase text-slate-400">Naslov dostave</label><input type="text" id="k-naslov" class="w-full p-3 border rounded-lg bg-slate-50"></div>
-                <div><label class="text-[10px] uppercase text-slate-400">Telefon</label><input type="text" id="k-telefon" class="w-full p-3 border rounded-lg bg-slate-50"></div>
-                <div><label class="text-[10px] uppercase text-slate-400">Email</label><input type="email" id="k-email" class="w-full p-3 border rounded-lg bg-slate-50"></div>
-                <div><label class="text-[10px] uppercase text-slate-400">WhatsApp (samo številke)</label><input type="text" id="k-whatsapp" class="w-full p-3 border rounded-lg bg-slate-50"></div>
-                <div><label class="text-[10px] uppercase text-slate-400">Opombe</label><textarea id="k-opombe" class="w-full p-3 border rounded-lg bg-slate-50 h-20"></textarea></div>
+                <div><label class="text-[10px] uppercase text-slate-400">Podatki podjetja (DŠ, TRR, polni naziv...)</label><textarea id="k-podatki" class="w-full p-3 border rounded-lg bg-slate-50 h-20"></textarea></div>
+                <div><label class="text-[10px] uppercase text-slate-400">Naslov dostave nalepk</label><input type="text" id="k-naslov" class="w-full p-3 border rounded-lg bg-slate-50"></div>
+                <div><label class="text-[10px] uppercase text-slate-400">Telefonska številka</label><input type="text" id="k-telefon" class="w-full p-3 border rounded-lg bg-slate-50"></div>
+                <div><label class="text-[10px] uppercase text-slate-400">Email naslov</label><input type="email" id="k-email" class="w-full p-3 border rounded-lg bg-slate-50"></div>
+                <div><label class="text-[10px] uppercase text-slate-400">WhatsApp številka (npr. 38640123456)</label><input type="text" id="k-whatsapp" class="w-full p-3 border rounded-lg bg-slate-50"></div>
+                <div><label class="text-[10px] uppercase text-slate-400">Opombe (glavna nit komunikacije)</label><textarea id="k-opombe" class="w-full p-3 border rounded-lg bg-slate-50 h-20"></textarea></div>
             </div>
             <div class="flex gap-3 mt-6">
                 <button onclick="closeModal('kontakt-modal')" class="flex-1 bg-slate-200 py-3 rounded-xl font-bold uppercase text-xs">Prekliči</button>
-                <button onclick="shraniKontakt()" class="flex-1 bg-indigo-600 text-white py-3 rounded-xl font-black uppercase text-xs">Shrani</button>
+                <button onclick="shraniKontakt()" class="flex-1 bg-indigo-600 text-white py-3 rounded-xl font-black uppercase text-xs shadow-md">Shrani</button>
             </div>
         </div>
     </div>
 
-    <!-- NOV DOKUMENT -->
+    <!-- NOV DOKUMENT (Z NALAGANJEM DATOTEKE IZ TELEFONA) -->
     <div id="uradno-modal" class="hidden fixed inset-0 bg-black/60 z-[100] flex items-center justify-center p-4 backdrop-blur-sm">
         <div class="bg-white p-6 rounded-2xl w-full max-w-sm shadow-2xl relative">
             <h3 class="font-black text-slate-800 uppercase text-lg italic mb-4">Nov Dokument</h3>
             <div class="space-y-3 text-xs font-bold italic text-slate-600">
-                <select id="u-tip" class="w-full p-3 border rounded-lg bg-slate-50">
-                    <option value="Dobavnica">Dobavnica</option>
-                    <option value="Racun">Račun</option>
-                </select>
-                <select id="u-trgovina" class="w-full p-3 border rounded-lg bg-slate-50"></select>
-                <input type="text" id="u-opis" placeholder="Kratek opis (npr. Št. računa 123)" class="w-full p-3 border rounded-lg bg-slate-50">
-                <input type="text" id="u-link" placeholder="Povezava do datoteke (Google Drive link)" class="w-full p-3 border rounded-lg bg-slate-50">
+                <div>
+                    <label class="text-[10px] uppercase text-slate-400">Vrsta dokumenta</label>
+                    <select id="u-tip" class="w-full p-3 border rounded-lg bg-slate-50">
+                        <option value="Dobavnica">Dobavnica</option>
+                        <option value="Racun">Račun</option>
+                    </select>
+                </div>
+                <div>
+                    <label class="text-[10px] uppercase text-slate-400">Trgovina / Stranka</label>
+                    <select id="u-trgovina" class="w-full p-3 border rounded-lg bg-slate-50"></select>
+                </div>
+                <div>
+                    <label class="text-[10px] uppercase text-slate-400">Kratek opis / Številka</label>
+                    <input type="text" id="u-opis" placeholder="Npr. Račun št. 2026-05" class="w-full p-3 border rounded-lg bg-slate-50">
+                </div>
+                <div class="bg-slate-50 p-3 rounded-xl border border-dashed border-slate-300">
+                    <label class="text-[10px] uppercase text-slate-700 font-black block mb-1">📎 Izberi datoteko (PDF ali Slika)</label>
+                    <input type="file" id="u-file" accept="image/*,application/pdf" class="w-full text-xs text-slate-600 file:mr-3 file:py-2 file:px-3 file:rounded-lg file:border-0 file:text-xs file:font-black file:bg-slate-800 file:text-white">
+                </div>
+                <div>
+                    <label class="text-[10px] uppercase text-slate-400">Ali prilepi zunanji link (neobvezno)</label>
+                    <input type="text" id="u-link" placeholder="https://..." class="w-full p-2.5 border rounded-lg bg-slate-50">
+                </div>
             </div>
             <div class="flex gap-3 mt-6">
                 <button onclick="closeModal('uradno-modal')" class="flex-1 bg-slate-200 py-3 rounded-xl font-bold uppercase text-xs">Prekliči</button>
-                <button onclick="shraniDokument()" class="flex-1 bg-slate-800 text-white py-3 rounded-xl font-black uppercase text-xs">Dodaj</button>
+                <button id="btn-save-doc" onclick="shraniDokument()" class="flex-1 bg-slate-800 text-white py-3 rounded-xl font-black uppercase text-xs shadow-md">Naloži in Shrani</button>
             </div>
         </div>
     </div>
 
-    <!-- TRGOVINA STATS -->
+    <!-- PODROBNOSTI TRGOVINE V ANALITIKI -->
     <div id="trgovina-stats-modal" class="hidden fixed inset-0 bg-black/60 z-[100] flex items-center justify-center p-4 backdrop-blur-sm">
         <div class="bg-white p-6 rounded-2xl w-full max-w-sm shadow-2xl relative max-h-[90vh] overflow-hidden flex flex-col">
-            <h3 id="ts-title" class="font-black text-main-teal uppercase text-lg italic mb-2">Trgovina</h3>
-            <p id="ts-rev" class="text-yellow-600 font-black text-xl mb-4"></p>
-            <div class="overflow-y-auto flex-1 space-y-2 pr-2" id="ts-list"></div>
+            <h3 id="ts-title" class="font-black text-main-teal uppercase text-lg italic">Trgovina</h3>
+            <p id="ts-rev" class="text-yellow-600 font-black text-xl"></p>
+            <p id="ts-stock-info" class="text-[10px] font-bold text-slate-400 uppercase mb-3 pb-2 border-b"></p>
+            
+            <div class="flex gap-2 mb-3">
+                <button id="ts-tab-prodano" onclick="switchTrgovinaModalTab('prodano')" class="flex-1 py-2 rounded-lg font-black text-[10px] uppercase bg-yellow-500 text-white">Prodane nalepke</button>
+                <button id="ts-tab-poslano" onclick="switchTrgovinaModalTab('poslano')" class="flex-1 py-2 rounded-lg font-black text-[10px] uppercase bg-slate-100 text-slate-600">Poslane nalepke</button>
+            </div>
+
+            <div class="overflow-y-auto flex-1 space-y-1.5 pr-1" id="ts-list"></div>
             <button onclick="closeModal('trgovina-stats-modal')" class="w-full mt-4 bg-slate-200 py-3 rounded-xl font-bold uppercase text-xs">Zapri</button>
-        </div>
-    </div>
-
-    <!-- PRODAJA & POŠILJKA -->
-    <div id="prodaja" class="screen p-6 max-w-md mx-auto">
-        <button onclick="showScreen('main-menu')" class="mb-4 text-main-teal font-bold uppercase text-[10px] bg-white px-3 py-1 rounded-full shadow-sm">← Nazaj</button>
-        <h2 class="text-3xl font-black mb-6 uppercase text-yellow-600 italic tracking-tighter">Nova Prodaja</h2>
-        <select id="sel-trg-pro" class="w-full p-4 bg-white rounded-xl mb-4 font-bold border-2 border-yellow-100 shadow-sm italic outline-none"></select>
-        <input type="date" id="input-prodaja-datum" class="w-full p-4 bg-white rounded-xl mb-6 font-bold border-2 border-yellow-100 shadow-sm italic outline-none text-slate-600">
-        <div class="bg-gradient-to-br from-yellow-50 to-white p-8 rounded-[30px] border-2 border-yellow-200 mb-8 text-center text-yellow-600 italic shadow-inner">
-            <input type="number" id="input-prodaja-total" class="text-7xl font-black w-full text-center outline-none bg-transparent" placeholder="0">
-        </div>
-        <button id="btn-save-pro" class="w-full bg-yellow-500 text-white py-5 rounded-2xl font-black text-lg shadow-lg uppercase italic tracking-widest hover:bg-yellow-600 transition-all">Vnesi prodajo</button>
-    </div>
-
-    <div id="posiljka" class="screen p-6 max-w-md mx-auto">
-        <button onclick="showScreen('main-menu')" class="mb-4 text-main-teal font-bold uppercase text-[10px] bg-white px-3 py-1 rounded-full shadow-sm">← Nazaj</button>
-        <h2 class="text-3xl font-black mb-6 uppercase text-main-teal italic tracking-tighter">Nova Pošiljka</h2>
-        <select id="sel-trg-pos" class="w-full p-4 bg-white rounded-xl mb-4 font-bold border border-light-teal shadow-sm italic outline-none"></select>
-        <input type="date" id="input-posiljka-datum" class="w-full p-4 bg-white rounded-xl mb-4 font-bold border border-light-teal shadow-sm italic outline-none text-slate-600">
-        <div id="posiljka-list" class="mb-28"></div>
-        <div class="fixed bottom-0 left-0 right-0 p-4 bg-white/95 border-t z-50 backdrop-blur-md">
-            <button id="btn-save-pos" class="w-full max-w-md mx-auto block bg-main-teal text-white py-5 rounded-2xl font-black text-lg shadow-lg uppercase italic tracking-widest hover:bg-[#356160] transition-all">Pošlji zalogo</button>
         </div>
     </div>
 
     <script type="module">
         import { initializeApp } from "https://www.gstatic.com/firebasejs/10.8.0/firebase-app.js";
         import { getFirestore, doc, getDoc, updateDoc, setDoc, increment, collection, addDoc, query, orderBy, getDocs, deleteDoc, onSnapshot } from "https://www.gstatic.com/firebasejs/10.8.0/firebase-firestore.js";
+        import { getStorage, ref, uploadBytes, getDownloadURL } from "https://www.gstatic.com/firebasejs/10.8.0/firebase-storage.js";
 
         const firebaseConfig = {
             apiKey: "AIzaSyDb8ny-gDdJUm0JBpyci_k-JboUYoM6ZhQ",
@@ -353,38 +485,120 @@
 
         const app = initializeApp(firebaseConfig);
         const db = getFirestore(app);
+        const storage = getStorage(app);
 
         const kategorije = {
             "Ljubljana": ["Ljubljana", "Zmajski most"],
-            "Gorenjska": ["Beljski vintgar", "Bled", "Bohinj", "Bovec", "Kranjska Gora", "Planica NC", "Planica WR", "Slovenija", "Srce", "Triglav"],
+            "Gorenjska": [
+                "Beljski vintgar", "Bled", "Bled srček", "Blejski grad", 
+                "Bohinj", "Bovec", "Gorenjska", "Kranjska Gora", 
+                "Kremšnita", "Planica NC", "Planica WR", "Planica poletje", 
+                "Pletna", "Slovenija", "Srce", "Triglav"
+            ],
             "Postojna": ["Postojnska jama", "Predjamski grad"],
             "Obala": ["Piran", "Grb Piran", "Tartini", "Portorož"],
             "Srbija": ["Srbija", "Novi Sad", "Okno", "Fraklič", "Šajkača", "Petrovaradinski sat", "Opanak", "Lepenski vir"]
         };
-        const trgovine = ["Souvenirs LJ", "Pik Pok Bled", "NC Planica", "TD Bled", "Unikatnica", "Postojnska jama privat", "Souvenirs NS", "Zakladi Triglav", "Zakladi Zaka Bled", "Stojnica Bovec", "Sonček Piran", "Memories of Piran", "Muzej Piran", "Vanja Portorož", "LUNA Izdelki", "Drugo"];
 
-        window.showScreen = (id) => {
+        let trgovine = [
+            "Souvenirs LJ", "Pik Pok Bled", "NC Planica", "TD Bled", "Unikatnica", 
+            "Postojnska jama privat", "Souvenirs NS", "Zakladi Triglav", "Zakladi Zaka Bled", 
+            "Stojnica Bovec", "Sonček Piran", "Memories of Piran", "Muzej Piran", 
+            "Vanja Portorož", "LUNA Izdelki", "Drugo"
+        ];
+
+        window.allTransactions = [];
+        window.allContacts = [];
+        window.placilaFilter = 'vsa';
+        window.currentUradnoTip = 'Dobavnica';
+        window.currentUradnoFirma = null;
+        window.activeStoreModalName = '';
+        window.activeStoreModalTab = 'prodano';
+
+        // Varno branje datuma iz Firestore zapisa
+        function parseDatum(d) {
+            if (!d) return null;
+            if (typeof d.toDate === 'function') return d.toDate();
+            if (d instanceof Date) return d;
+            if (d.seconds) return new Date(d.seconds * 1000);
+            return new Date(d);
+        }
+
+        // Napolni vse spustne sezname trgovin
+        function populateTrgovineDropdowns() {
+            const ids = ['sel-trg-pro', 'sel-trg-pos', 'edit-trg', 'k-firma', 'u-trgovina'];
+            ids.forEach(id => {
+                const el = document.getElementById(id);
+                if (el) {
+                    const currentVal = el.value;
+                    el.innerHTML = "";
+                    trgovine.forEach(t => {
+                        el.innerHTML += `<option value="${t}">${t}</option>`;
+                    });
+                    if (currentVal && trgovine.includes(currentVal)) el.value = currentVal;
+                }
+            });
+        }
+        populateTrgovineDropdowns();
+
+        // V ozadju preveri še nastavitve/cenik, če si dodal kakšno novo trgovino direktno v Firebase
+        getDoc(doc(db, "nastavitve", "cenik")).then(snap => {
+            if (snap.exists()) {
+                const dbStores = Object.keys(snap.data());
+                let changed = false;
+                dbStores.forEach(s => {
+                    if (!trgovine.includes(s)) {
+                        trgovine.splice(trgovine.length - 1, 0, s);
+                        changed = true;
+                    }
+                });
+                if (changed) populateTrgovineDropdowns();
+            }
+        }).catch(err => console.warn("Cenik ni bil prebran ob zagonu:", err));
+
+        // Generiranje seznamov nalepk za Pošiljko, Nabavo in Podrobno Prodajo
+        const pList = document.getElementById('posiljka-list');
+        const sList = document.getElementById('strosek-nalepke-list');
+        const prList = document.getElementById('prodaja-artikli-list');
+        
+        Object.entries(kategorije).forEach(([kat, items]) => {
+            const katHtml = `<div class="category-header">${kat}</div>`;
+            if (pList) pList.innerHTML += katHtml;
+            if (sList) sList.innerHTML += katHtml;
+            if (prList) prList.innerHTML += katHtml;
+
+            items.sort().forEach(n => {
+                const itemRow = `<div class="flex items-center justify-between bg-white p-3 border-b italic"><span class="font-bold text-[10px] uppercase text-slate-500">${n}</span><input type="number" data-name="${n}" class="w-16 p-2 bg-slate-50 rounded text-center font-black border border-slate-200 outline-none" placeholder="0"></div>`;
+                if (pList) pList.innerHTML += itemRow;
+                if (sList) sList.innerHTML += itemRow;
+                if (prList) prList.innerHTML += itemRow;
+            });
+        });
+
+        // Preklapljanje zaslonov
+        window.showScreen = (id, skipDefaultInit = false) => {
             document.querySelectorAll('.screen').forEach(el => el.classList.remove('active'));
-            document.getElementById(id).classList.add('active');
-            if(id === 'zaloga') naloziZalogo();
-            if(id === 'admin') { naloziCenik(); naloziLog(); naloziAdminZalogo(); }
-            if(id === 'stats') naloziStats();
-            if(id === 'placila') naloziPlacila();
-            if(id === 'kontakti') naloziKontakte();
-            if(id === 'uradno') filterUradno('Dobavnica');
+            const target = document.getElementById(id);
+            if (target) target.classList.add('active');
+            window.scrollTo(0, 0);
+
+            if (id === 'zaloga') naloziZalogo();
+            if (id === 'admin') { naloziCenik(); naloziLog(); naloziAdminZalogo(); }
+            if (id === 'stats') naloziStats();
+            if (id === 'placila') naloziPlacila();
+            if (id === 'kontakti') naloziKontakte();
+            if (id === 'uradno' && !skipDefaultInit) filterUradno(window.currentUradnoTip, null);
         };
 
         window.closeModal = (id) => document.getElementById(id).classList.add('hidden');
+        
         window.toggleVisibility = (id, btn) => {
             const el = document.getElementById(id);
             el.classList.toggle('hidden');
-            btn.innerText = el.classList.contains('hidden') ? "Prikaži vse ↓" : "Skrij ↑";
+            btn.innerText = el.classList.contains('hidden') ? "Prikaži vse nalepke ↓" : "Skrij ↑";
         };
 
-        window.allTransactions = [];
-        window.placilaFilter = 'neplacano';
-
-        // POSODABLJANJE FINANČNEGA STATUSA IN METRIK PRODAJE
+        // POSODABLJANJE FINANČNEGA STATUSA IN METRIK PRODAJE V REALNEM ČASU
         onSnapshot(collection(db, "transakcije"), (snap) => {
             let bruto = 0, stroski = 0, placanoNeto = 0;
             window.allTransactions = [];
@@ -405,22 +619,24 @@
                 data.id = d.id;
                 window.allTransactions.push(data);
                 
-                if(data.tip === "Prodaja") {
+                if (data.tip === "Prodaja") {
                     bruto += (data.znesek || 0);
-                    if(data.placan) {
-                        let ddvFaktor = (data.ddv && data.imaDdv) ? (1 + (data.ddv/100)) : 1;
+                    if (data.placan) {
+                        let ddvFaktor = (data.ddv && data.imaDdv) ? (1 + (data.ddv / 100)) : 1;
                         placanoNeto += (data.znesek || 0) / ddvFaktor;
                     }
 
                     const kos = data.kolicina || 0;
-                    prodanoSkupno += kos; // Skupno od začetka prodaje
+                    prodanoSkupno += kos;
 
-                    const tDate = data.datum ? data.datum.toDate() : null;
-                    if(tDate && tDate >= startOfPrevMonth && tDate < startOfCurrentMonth) {
-                        prodanoPrejsnjiMesec += kos; // Samo za prejšnji mesec
+                    const tDate = parseDatum(data.datum);
+                    if (tDate && tDate >= startOfPrevMonth && tDate < startOfCurrentMonth) {
+                        prodanoPrejsnjiMesec += kos;
                     }
                 }
-                if(data.tip === "Nabava") stroski += (data.strosek || 0);
+                if (data.tip === "Nabava") {
+                    stroski += (data.strosek || 0);
+                }
             });
             
             const profit = placanoNeto - stroski;
@@ -430,33 +646,112 @@
             document.getElementById('dash-stroski').innerText = `${stroski.toFixed(2)} €`;
             document.getElementById('dash-profit').innerText = `${profit.toFixed(2)} €`;
             
-            // Posodobitev statistike na pristajalni strani
             const labelEl = document.getElementById('label-prejsnji-mesec');
             if (labelEl) labelEl.innerText = `Prodano (${prevMonthName})`;
             
             document.getElementById('dash-prodano-prejsnji-mesec').innerText = `${prodanoPrejsnjiMesec} kos`;
             document.getElementById('dash-prodano-skupno').innerText = `${prodanoSkupno} kos`;
 
-            if(document.getElementById('placila').classList.contains('active')) {
-                naloziPlacila();
-            }
+            if (document.getElementById('placila').classList.contains('active')) naloziPlacila();
+            if (document.getElementById('stats').classList.contains('active')) naloziStats();
+            if (document.getElementById('zaloga').classList.contains('active')) naloziZalogoTrgovin();
         });
 
-        // PREKLOP MED NAKUPOM NALEPK IN DRUGIMI STROŠKI
+        // ==================== PRODAJA ====================
+        window.toggleProdajaNacin = () => {
+            const isPodrobno = document.getElementById('toggle-prodaja-nacin').checked;
+            document.getElementById('prodaja-hitri').classList.toggle('hidden', isPodrobno);
+            document.getElementById('prodaja-podrobno').classList.toggle('hidden', !isPodrobno);
+            document.getElementById('lbl-hitri').className = isPodrobno ? "text-[10px] font-bold uppercase text-slate-400" : "text-[10px] font-black uppercase text-yellow-600";
+            document.getElementById('lbl-podrobno').className = isPodrobno ? "text-[10px] font-black uppercase text-yellow-600" : "text-[10px] font-bold uppercase text-slate-400";
+        };
+
+        document.getElementById('btn-save-pro').onclick = async () => {
+            const trg = document.getElementById('sel-trg-pro').value;
+            let d = document.getElementById('input-prodaja-datum').value;
+            const datumVnosa = d ? new Date(d) : new Date();
+            const isPodrobno = document.getElementById('toggle-prodaja-nacin').checked;
+
+            let kol = 0;
+            let artikli = null;
+
+            if (isPodrobno) {
+                artikli = {};
+                document.querySelectorAll('#prodaja-artikli-list input').forEach(inp => {
+                    const v = parseInt(inp.value) || 0;
+                    if (v > 0) {
+                        artikli[inp.dataset.name] = v;
+                        kol += v;
+                    }
+                });
+            } else {
+                kol = parseInt(document.getElementById('input-prodaja-total').value) || 0;
+            }
+
+            if (kol <= 0) return alert("Vpiši število prodanih nalepk!");
+
+            const set = await getDoc(doc(db, "nastavitve", "cenik"));
+            const cena = set.exists() && set.data()[trg] !== undefined ? set.data()[trg] : 1;
+            
+            const docData = {
+                tip: "Prodaja",
+                trgovina: trg,
+                znesek: kol * cena,
+                kolicina: kol,
+                datum: datumVnosa,
+                placan: false
+            };
+            if (artikli && Object.keys(artikli).length > 0) docData.artikli = artikli;
+
+            await addDoc(collection(db, "transakcije"), docData);
+            
+            document.getElementById('input-prodaja-total').value = "";
+            document.querySelectorAll('#prodaja-artikli-list input').forEach(inp => inp.value = "");
+            showScreen('main-menu');
+        };
+
+        // ==================== POŠILJKA ====================
+        document.getElementById('btn-save-pos').onclick = async () => {
+            const updates = {};
+            const artikli = {};
+            let total = 0;
+            let d = document.getElementById('input-posiljka-datum').value;
+            const datumVnosa = d ? new Date(d) : new Date();
+
+            document.querySelectorAll('#posiljka-list input').forEach(inp => {
+                const v = parseInt(inp.value) || 0; 
+                if (v > 0) {
+                    updates[inp.dataset.name] = increment(-v);
+                    artikli[inp.dataset.name] = v;
+                    total += v;
+                }
+            });
+
+            if (total <= 0) return alert("Izberi vsaj eno nalepko za pošiljko!");
+
+            await setDoc(doc(db, "zaloga", "glavno_skladisce"), updates, { merge: true });
+            await addDoc(collection(db, "transakcije"), {
+                tip: "Posiljka",
+                trgovina: document.getElementById('sel-trg-pos').value,
+                kolicina: total,
+                artikli: artikli,
+                datum: datumVnosa
+            });
+
+            document.querySelectorAll('#posiljka-list input').forEach(inp => inp.value = "");
+            showScreen('main-menu');
+        };
+
+        // ==================== STROŠKI / NABAVA ====================
         window.toggleStrosekType = () => {
             const kat = document.getElementById('input-strosek-kategorija').value;
             const nalBox = document.getElementById('strosek-nalepke-box');
-            if(kat === "Nakup nalepk") {
-                nalBox.classList.remove('hidden');
-            } else {
-                nalBox.classList.add('hidden');
-            }
+            nalBox.classList.toggle('hidden', kat !== "Nakup nalepk");
         };
 
-        // SHRANJEVANJE STROŠKA IN POVEČANJE ZALOGE
         document.getElementById('btn-save-strosek').onclick = async () => {
             const znesek = parseFloat(document.getElementById('input-strosek-znesek').value);
-            if (isNaN(znesek)) return;
+            if (isNaN(znesek) || znesek < 0) return alert("Vpiši znesek stroška!");
             
             const kategorija = document.getElementById('input-strosek-kategorija').value;
             const opis = document.getElementById('input-strosek-opis').value;
@@ -469,7 +764,7 @@
 
             if (kategorija === "Nakup nalepk") {
                 document.querySelectorAll('#strosek-nalepke-list input').forEach(inp => {
-                    const v = parseInt(inp.value);
+                    const v = parseInt(inp.value) || 0;
                     if (v > 0) {
                         updates[inp.dataset.name] = increment(v);
                         artikli[inp.dataset.name] = v;
@@ -478,64 +773,145 @@
                 });
                 
                 if (Object.keys(updates).length > 0) {
-                    await updateDoc(doc(db, "zaloga", "glavno_skladisce"), updates);
+                    await setDoc(doc(db, "zaloga", "glavno_skladisce"), updates, { merge: true });
                 }
             }
 
             await addDoc(collection(db, "transakcije"), {
                 tip: "Nabava",
                 kategorija: kategorija,
-                opis: opis,
+                opis: opis || kategorija,
                 strosek: znesek,
-                artikli: artikli,
+                artikli: Object.keys(artikli).length > 0 ? artikli : null,
                 kolicina: totalKos,
                 datum: datumVnosa
             });
 
-            location.reload();
+            document.getElementById('input-strosek-znesek').value = "";
+            document.getElementById('input-strosek-opis').value = "";
+            document.querySelectorAll('#strosek-nalepke-list input').forEach(inp => inp.value = "");
+            showScreen('main-menu');
         };
 
+        // ==================== ZALOGA ====================
+        window.switchZalogaTab = (tab) => {
+            const isGlavna = tab === 'glavna';
+            document.getElementById('zaloga-glavna-wrapper').classList.toggle('hidden', !isGlavna);
+            document.getElementById('zaloga-trgovine-wrapper').classList.toggle('hidden', isGlavna);
+            
+            document.getElementById('tab-zaloga-glavna').className = isGlavna 
+                ? "flex-1 py-3 rounded-xl border font-black text-xs uppercase transition-all bg-amber-600 text-white border-amber-600 shadow-md"
+                : "flex-1 py-3 rounded-xl border font-black text-xs uppercase transition-all bg-white text-slate-600 border-slate-200 shadow-sm";
+            document.getElementById('tab-zaloga-trgovine').className = !isGlavna 
+                ? "flex-1 py-3 rounded-xl border font-black text-xs uppercase transition-all bg-amber-600 text-white border-amber-600 shadow-md"
+                : "flex-1 py-3 rounded-xl border font-black text-xs uppercase transition-all bg-white text-slate-600 border-slate-200 shadow-sm";
+            
+            if (!isGlavna) naloziZalogoTrgovin();
+        };
+
+        async function naloziZalogo() {
+            const snap = await getDoc(doc(db, "zaloga", "glavno_skladisce"));
+            const data = snap.exists() ? snap.data() : {};
+            const container = document.getElementById('zaloga-container');
+            container.innerHTML = "";
+            Object.entries(kategorije).forEach(([kat, items]) => {
+                let html = `<div class="bg-white rounded-xl shadow-sm overflow-hidden mb-4 border border-light-teal"><div class="category-header" style="margin-top:0;">${kat}</div><div class="divide-y divide-slate-50">`;
+                items.sort().forEach(item => {
+                    const count = data[item] || 0;
+                    html += `<div class="flex justify-between p-3 italic font-bold uppercase text-[10px]"><span>${item}</span><span class="${count < 50 ? 'text-red-500 font-black' : 'text-main-teal'}">${count}</span></div>`;
+                });
+                container.innerHTML += html + `</div></div>`;
+            });
+            naloziZalogoTrgovin();
+        }
+
+        function naloziZalogoTrgovin() {
+            const storeStock = {};
+            trgovine.forEach(t => storeStock[t] = { poslano: 0, prodano: 0 });
+            
+            window.allTransactions.forEach(t => {
+                const trg = t.trgovina;
+                if (!trg) return;
+                if (!storeStock[trg]) storeStock[trg] = { poslano: 0, prodano: 0 };
+                if (t.tip === "Posiljka") storeStock[trg].poslano += (t.kolicina || 0);
+                if (t.tip === "Prodaja") storeStock[trg].prodano += (t.kolicina || 0);
+            });
+
+            const cont = document.getElementById('zaloga-trgovine-container');
+            if (!cont) return;
+            cont.innerHTML = "";
+
+            Object.entries(storeStock)
+                .sort((a, b) => (b[1].poslano - b[1].prodano) - (a[1].poslano - a[1].prodano))
+                .forEach(([t, s]) => {
+                    const zaloga = s.poslano - s.prodano;
+                    cont.innerHTML += `
+                        <div onclick="openTrgovinaStats('${t}')" class="flex justify-between items-center bg-white p-3.5 rounded-xl border border-slate-100 shadow-sm cursor-pointer hover:bg-slate-50">
+                            <div>
+                                <p class="font-black text-xs uppercase text-slate-700 italic">${t}</p>
+                                <p class="text-[9px] text-slate-400 font-bold">Poslano: ${s.poslano} kos • Prodano: ${s.prodano} kos</p>
+                            </div>
+                            <span class="font-black text-sm ${zaloga < 0 ? 'text-red-500' : 'text-amber-600'}">${zaloga} kos</span>
+                        </div>`;
+                });
+        }
+
+        // ==================== ANALITIKA ====================
         async function naloziStats() {
             let trgStats = {}, nalStats = {};
-            trgovine.forEach(t => trgStats[t] = { eur: 0, nalepke: {} });
+            trgovine.forEach(t => trgStats[t] = { eur: 0, prodanoKos: 0, poslanoKos: 0 });
             Object.values(kategorije).flat().forEach(n => nalStats[n] = 0);
-            nalStats["Neopredeljeno (star log)"] = 0;
+            let neopredeljenoStariLogi = 0;
 
             window.allTransactions.forEach(data => {
-                const t = data.trgovina || "Neznano";
-                if(data.tip === "Prodaja" && trgStats[t]) {
+                const t = data.trgovina || "Drugo";
+                if (!trgStats[t]) trgStats[t] = { eur: 0, prodanoKos: 0, poslanoKos: 0 };
+
+                if (data.tip === "Prodaja") {
                     trgStats[t].eur += (data.znesek || 0);
+                    trgStats[t].prodanoKos += (data.kolicina || 0);
                 }
-                if(data.tip === "Posiljka") {
-                    if (data.artikli) {
+                if (data.tip === "Posiljka") {
+                    trgStats[t].poslanoKos += (data.kolicina || 0);
+                    if (data.artikli && Object.keys(data.artikli).length > 0) {
+                        let sumArtikli = 0;
                         for (const [n, k] of Object.entries(data.artikli)) {
-                            if(nalStats[n] === undefined) nalStats[n] = 0;
-                            nalStats[n] += k;
-                            if(trgStats[t]) {
-                                trgStats[t].nalepke[n] = (trgStats[t].nalepke[n] || 0) + k;
-                            }
+                            const num = parseInt(k) || 0;
+                            if (nalStats[n] === undefined) nalStats[n] = 0;
+                            nalStats[n] += num;
+                            sumArtikli += num;
+                        }
+                        if ((data.kolicina || 0) > sumArtikli) {
+                            neopredeljenoStariLogi += ((data.kolicina || 0) - sumArtikli);
                         }
                     } else {
-                        nalStats["Neopredeljeno (star log)"] += (data.kolicina || 0);
+                        neopredeljenoStariLogi += (data.kolicina || 0);
                     }
                 }
             });
 
+            if (neopredeljenoStariLogi > 0) {
+                nalStats["Neopredeljeno (stari vnosi brez detajlov)"] = neopredeljenoStariLogi;
+            }
+
+            // PRIKAZ VSEH TRGOVIN (tudi če imajo 0 € prodaje)
             const trgList = document.getElementById('stats-trgovine-list');
             trgList.innerHTML = "";
-            Object.entries(trgStats).sort((a,b) => b[1].eur - a[1].eur).forEach(([t, s]) => {
-                if(s.eur > 0 || Object.keys(s.nalepke).length > 0) {
-                    trgList.innerHTML += `
-                        <button onclick="openTrgovinaStats('${t}')" class="w-full flex justify-between items-center bg-white p-4 rounded-xl border shadow-sm hover:bg-slate-50 transition-all">
-                            <span class="font-black text-sm text-main-teal uppercase italic">${t}</span>
-                            <span class="font-black text-yellow-600">${s.eur.toFixed(2)} €</span>
-                        </button>`;
-                }
+            Object.entries(trgStats).sort((a,b) => b[1].eur - a[1].eur).forEach(([t, s], idx) => {
+                trgList.innerHTML += `
+                    <button onclick="openTrgovinaStats('${t}')" class="w-full flex justify-between items-center bg-white p-4 rounded-xl border border-slate-100 shadow-sm hover:bg-slate-50 transition-all text-left">
+                        <div>
+                            <span class="font-black text-xs text-main-teal uppercase italic">${idx + 1}. ${t}</span>
+                            <p class="text-[9px] text-slate-400 font-bold mt-0.5">Prodano: ${s.prodanoKos} kos • Poslano: ${s.poslanoKos} kos</p>
+                        </div>
+                        <span class="font-black text-yellow-600 text-base">${s.eur.toFixed(2)} €</span>
+                    </button>`;
             });
 
+            // VSE POSLANE NALEPKE
             const nalArr = Object.entries(nalStats).sort((a,b) => b[1] - a[1]);
             const renderNalepka = (n, k, i, isTop) => `
-                <div class="flex justify-between items-center bg-white ${isTop ? 'p-4' : 'p-2'} rounded-xl border border-slate-100 shadow-sm italic">
+                <div class="flex justify-between items-center bg-white ${isTop ? 'p-4' : 'p-2.5'} rounded-xl border border-slate-100 shadow-sm italic">
                     <div class="flex items-center gap-3">
                         <span class="font-black ${isTop ? 'text-light-teal text-2xl' : 'text-slate-400 text-sm'} w-6 text-center">${i+1}.</span>
                         <span class="font-bold ${isTop ? 'text-sm text-main-teal' : 'text-[11px] text-slate-600'} uppercase">${n}</span>
@@ -548,39 +924,87 @@
         }
 
         window.openTrgovinaStats = (t) => {
-            let trgData = { eur: 0, nalepke: {} };
-            window.allTransactions.forEach(data => {
-                if(data.trgovina === t) {
-                    if(data.tip === "Prodaja") trgData.eur += (data.znesek || 0);
-                    if(data.tip === "Posiljka" && data.artikli) {
-                        for(let [n, k] of Object.entries(data.artikli)) trgData.nalepke[n] = (trgData.nalepke[n]||0) + k;
-                    }
-                }
-            });
-            document.getElementById('ts-title').innerText = t;
-            document.getElementById('ts-rev').innerText = `Zaslužek: ${trgData.eur.toFixed(2)} €`;
-            
-            const list = document.getElementById('ts-list');
-            list.innerHTML = "";
-            Object.entries(trgData.nalepke).sort((a,b)=>b[1]-a[1]).forEach(([n,k], i) => {
-                list.innerHTML += `<div class="flex justify-between bg-slate-50 p-2 rounded items-center"><span class="text-xs font-bold uppercase text-slate-600">${i+1}. ${n}</span><span class="font-black text-main-teal">${k}</span></div>`;
-            });
-            if(list.innerHTML === "") list.innerHTML = "<p class='text-xs italic text-slate-400'>Ni podatkov o posameznih nalepkah.</p>";
+            window.activeStoreModalName = t;
+            window.activeStoreModalTab = 'prodano';
+            renderTrgovinaStatsModal();
             document.getElementById('trgovina-stats-modal').classList.remove('hidden');
         };
 
-        // ZAVIHAK PLAČILA Z MOŽNOSTJO UREJANJA IN BRISANJA
+        window.switchTrgovinaModalTab = (tab) => {
+            window.activeStoreModalTab = tab;
+            renderTrgovinaStatsModal();
+        };
+
+        function renderTrgovinaStatsModal() {
+            const t = window.activeStoreModalName;
+            const tab = window.activeStoreModalTab;
+            
+            let eur = 0, poslanoSkupaj = 0, prodanoSkupaj = 0;
+            let prodaneNalepke = {}, poslaneNalepke = {};
+
+            window.allTransactions.forEach(data => {
+                if (data.trgovina === t) {
+                    if (data.tip === "Prodaja") {
+                        eur += (data.znesek || 0);
+                        prodanoSkupaj += (data.kolicina || 0);
+                        if (data.artikli) {
+                            for (let [n, k] of Object.entries(data.artikli)) {
+                                prodaneNalepke[n] = (prodaneNalepke[n] || 0) + (parseInt(k) || 0);
+                            }
+                        }
+                    }
+                    if (data.tip === "Posiljka") {
+                        poslanoSkupaj += (data.kolicina || 0);
+                        if (data.artikli) {
+                            for (let [n, k] of Object.entries(data.artikli)) {
+                                poslaneNalepke[n] = (poslaneNalepke[n] || 0) + (parseInt(k) || 0);
+                            }
+                        }
+                    }
+                }
+            });
+
+            document.getElementById('ts-title').innerText = t;
+            document.getElementById('ts-rev').innerText = `Generirano: ${eur.toFixed(2)} €`;
+            document.getElementById('ts-stock-info').innerText = `Skupaj poslano: ${poslanoSkupaj} kos | Prodano: ${prodanoSkupaj} kos | Zaloga: ${poslanoSkupaj - prodanoSkupaj} kos`;
+
+            document.getElementById('ts-tab-prodano').className = tab === 'prodano'
+                ? "flex-1 py-2 rounded-lg font-black text-[10px] uppercase bg-yellow-500 text-white shadow-sm"
+                : "flex-1 py-2 rounded-lg font-black text-[10px] uppercase bg-slate-100 text-slate-600";
+            document.getElementById('ts-tab-poslano').className = tab === 'poslano'
+                ? "flex-1 py-2 rounded-lg font-black text-[10px] uppercase bg-main-teal text-white shadow-sm"
+                : "flex-1 py-2 rounded-lg font-black text-[10px] uppercase bg-slate-100 text-slate-600";
+
+            const list = document.getElementById('ts-list');
+            list.innerHTML = "";
+            const sourceObj = tab === 'prodano' ? prodaneNalepke : poslaneNalepke;
+            const entries = Object.entries(sourceObj).sort((a, b) => b[1] - a[1]);
+
+            if (entries.length === 0) {
+                list.innerHTML = tab === 'prodano'
+                    ? `<p class="text-xs italic text-slate-400 p-2">Za to trgovino so bile prodaje vpisane samo kot skupno število (${prodanoSkupaj} kos). Za prikaz po dizajnih pri vnosu prodaje vklopi "Točno po nalepkah".</p>`
+                    : `<p class="text-xs italic text-slate-400 p-2">Ni zabeleženih posamičnih poslanih nalepk.</p>`;
+            } else {
+                entries.forEach(([n, k], i) => {
+                    list.innerHTML += `<div class="flex justify-between bg-slate-50 p-2.5 rounded-lg items-center border border-slate-100"><span class="text-xs font-bold uppercase text-slate-600">${i+1}. ${n}</span><span class="font-black text-main-teal text-xs">${k} kos</span></div>`;
+                });
+            }
+        }
+
+        // ==================== PLAČILA ====================
         window.togglePlacilaTab = (type) => {
             window.placilaFilter = type;
-            const btnN = document.getElementById('btn-filter-neplacano');
-            const btnV = document.getElementById('btn-filter-vsa');
-            if(type === 'neplacano') {
-                btnN.className = "flex-1 py-2 rounded-lg font-black text-xs uppercase bg-green-700 text-white";
-                btnV.className = "flex-1 py-2 rounded-lg font-black text-xs uppercase bg-white text-slate-600 border";
-            } else {
-                btnV.className = "flex-1 py-2 rounded-lg font-black text-xs uppercase bg-green-700 text-white";
-                btnN.className = "flex-1 py-2 rounded-lg font-black text-xs uppercase bg-white text-slate-600 border";
-            }
+            const tabs = {
+                'vsa': document.getElementById('btn-filter-vsa'),
+                'neplacano': document.getElementById('btn-filter-neplacano'),
+                'placano': document.getElementById('btn-filter-placano')
+            };
+            Object.entries(tabs).forEach(([k, btn]) => {
+                if (!btn) return;
+                btn.className = (k === type)
+                    ? "flex-1 py-2.5 rounded-xl font-black text-xs uppercase bg-green-700 text-white shadow-sm"
+                    : "flex-1 py-2.5 rounded-xl font-black text-xs uppercase bg-white text-slate-600 border";
+            });
             naloziPlacila();
         };
 
@@ -588,89 +1012,164 @@
             const list = document.getElementById('placila-list');
             list.innerHTML = "";
             
-            let posiljkeList = window.allTransactions.filter(t => t.tip === "Prodaja");
-            if (window.placilaFilter === 'neplacano') {
-                posiljkeList = posiljkeList.filter(t => !t.placan);
-            }
-            posiljkeList.sort((a,b) => (b.datum || 0) - (a.datum || 0));
+            let prodajeList = window.allTransactions.filter(t => t.tip === "Prodaja");
+            if (window.placilaFilter === 'neplacano') prodajeList = prodajeList.filter(t => !t.placan);
+            if (window.placilaFilter === 'placano') prodajeList = prodajeList.filter(t => t.placan);
             
-            if(posiljkeList.length === 0) {
-                list.innerHTML = "<p class='text-center text-slate-400 italic font-bold text-xs mt-10'>Ni najdenih plačil 🎉</p>";
+            prodajeList.sort((a,b) => (parseDatum(b.datum) || 0) - (parseDatum(a.datum) || 0));
+            
+            if (prodajeList.length === 0) {
+                list.innerHTML = "<p class='text-center text-slate-400 italic font-bold text-xs mt-10'>Ni najdenih prodaj v tem pogledu 🎉</p>";
                 return;
             }
             
-            posiljkeList.forEach(d => {
-                const dat = d.datum ? d.datum.toDate().toLocaleDateString('sl-SI') : '';
-                const isPaid = d.placan;
+            prodajeList.forEach(d => {
+                const tDate = parseDatum(d.datum);
+                const dat = tDate ? tDate.toLocaleDateString('sl-SI') : '';
+                const isPaid = !!d.placan;
+                const ddvText = (isPaid && d.imaDdv) ? ` (DDV ${d.ddv || 10}%)` : '';
+
                 list.innerHTML += `
                     <div class="bg-white p-4 rounded-xl border border-slate-100 shadow-sm flex justify-between items-center">
                         <div>
                             <div class="flex items-center gap-2">
                                 <p class="font-black uppercase text-sm text-slate-700">${d.trgovina}</p>
-                                ${isPaid ? `<span class="bg-green-100 text-green-700 text-[8px] font-black uppercase px-2 py-0.5 rounded">Plačano</span>` : `<span class="bg-yellow-100 text-yellow-700 text-[8px] font-black uppercase px-2 py-0.5 rounded">Čaka</span>`}
                             </div>
-                            <p class="text-[10px] text-slate-400 font-bold mt-1">${dat} • ${d.kolicina} kos</p>
-                            <p class="text-[12px] font-black text-yellow-600 mt-0.5">${(d.znesek || 0).toFixed(2)}€</p>
+                            <p class="text-[10px] text-slate-400 font-bold mt-0.5">${dat} • ${d.kolicina || 0} kos${ddvText}</p>
+                            <p class="text-sm font-black text-yellow-600 mt-0.5">${(d.znesek || 0).toFixed(2)} €</p>
                         </div>
                         <div class="flex items-center gap-1.5">
-                            ${!isPaid ? `<button onclick="openPlaciloModal('${d.id}')" title="Potrdi plačilo" class="bg-green-100 text-green-700 p-2.5 rounded-xl font-bold text-xs shadow-sm"><span class="text-base">✓</span></button>` : ''}
-                            <button onclick="openEditModal('${d.id}')" title="Uredi" class="bg-slate-100 text-slate-600 p-2.5 rounded-xl font-bold text-xs shadow-sm">✏️</button>
-                            <button onclick="deleteLog('${d.id}')" title="Izbriši" class="bg-red-50 text-red-500 p-2.5 rounded-xl font-bold text-xs shadow-sm">🗑️</button>
+                            <button onclick="openPlaciloModal('${d.id}')" class="px-3 py-2 rounded-xl font-black text-[10px] uppercase shadow-sm transition-all ${isPaid ? 'bg-green-600 text-white' : 'bg-amber-100 text-amber-800 border border-amber-300'}">
+                                ${isPaid ? 'Plačano ✓' : 'Označi plačano'}
+                            </button>
+                            <button onclick="openEditModal('${d.id}')" title="Uredi" class="bg-slate-100 text-slate-600 p-2 rounded-xl font-bold text-xs shadow-sm">✏️</button>
+                            <button onclick="deleteLog('${d.id}')" title="Izbriši" class="bg-red-50 text-red-500 p-2 rounded-xl font-bold text-xs shadow-sm">🗑️</button>
                         </div>
                     </div>`;
             });
         }
 
         window.openPlaciloModal = (id) => {
+            const item = window.allTransactions.find(x => x.id === id);
             document.getElementById('placilo-id').value = id;
+            if (item) {
+                const imaDdv = item.imaDdv !== undefined ? item.imaDdv : true;
+                document.getElementById('placilo-ddv-toggle').checked = imaDdv;
+                document.getElementById('placilo-ddv-val').value = item.ddv !== undefined ? item.ddv : 10;
+                document.getElementById('placilo-ddv-val').disabled = !imaDdv;
+            }
             document.getElementById('placilo-modal').classList.remove('hidden');
         };
 
-        window.potrdiPlaciloDb = async () => {
+        window.potrdiPlaciloDb = async (placanStatus) => {
             const id = document.getElementById('placilo-id').value;
             const imaDdv = document.getElementById('placilo-ddv-toggle').checked;
             const ddv = parseFloat(document.getElementById('placilo-ddv-val').value) || 0;
             
-            await updateDoc(doc(db, "transakcije", id), { placan: true, imaDdv, ddv });
+            await updateDoc(doc(db, "transakcije", id), { placan: placanStatus, imaDdv, ddv });
             closeModal('placilo-modal');
         };
 
+        // ==================== KONTAKTI ====================
         async function naloziKontakte() {
             const list = document.getElementById('kontakti-list');
             list.innerHTML = "<p class='text-center text-slate-400 italic text-xs mt-4'>Nalagam...</p>";
             const snap = await getDocs(collection(db, "kontakti"));
             list.innerHTML = "";
+            window.allContacts = [];
+
             snap.forEach(d => {
                 const k = d.data();
+                k.id = d.id;
+                window.allContacts.push(k);
+
                 list.innerHTML += `
-                    <div class="bg-white p-4 rounded-xl border border-slate-100 shadow-sm">
-                        <div class="flex justify-between items-start mb-2">
-                            <div>
-                                <p class="font-black uppercase text-sm text-indigo-700">${k.ime}</p>
-                                <p class="text-[10px] font-bold text-slate-500 uppercase bg-slate-100 px-2 rounded inline-block mt-1">${k.firma}</p>
-                            </div>
-                            <div class="flex gap-2">
-                                ${k.telefon ? `<a href="tel:${k.telefon}" class="bg-green-100 p-2 rounded-full text-green-700 shadow-sm">📞</a>` : ''}
-                                ${k.whatsapp ? `<a href="https://wa.me/${k.whatsapp.replace(/[^0-9]/g, '')}" target="_blank" class="bg-green-500 p-2 rounded-full text-white shadow-sm">💬</a>` : ''}
-                                ${k.email ? `<a href="mailto:${k.email}" class="bg-blue-100 p-2 rounded-full text-blue-700 shadow-sm">✉️</a>` : ''}
-                                <button onclick="openKontaktModal('${d.id}')" class="bg-indigo-100 p-2 rounded-lg text-indigo-700 font-bold text-[10px] uppercase shadow-sm">Uredi</button>
-                            </div>
+                    <div onclick="openKontaktViewModal('${k.id}')" class="bg-white p-4 rounded-xl border border-slate-100 shadow-sm cursor-pointer hover:bg-slate-50 transition-all flex justify-between items-center">
+                        <div>
+                            <p class="font-black uppercase text-sm text-slate-800">${k.ime || 'Brez imena'}</p>
+                            <span class="text-[10px] font-black text-indigo-700 uppercase bg-indigo-50 border border-indigo-200 px-2.5 py-0.5 rounded-full inline-block mt-1">${k.firma || '-'}</span>
                         </div>
-                        <p class="text-[11px] text-slate-600 italic mb-3"><span class="font-bold text-slate-400 uppercase">Naslov:</span> ${k.naslov || '/'}</p>
-                        ${k.opombe ? `<div class="bg-indigo-50 p-2 rounded border border-indigo-100 text-[10px] text-indigo-800 italic mb-3">${k.opombe}</div>` : ''}
-                        <button onclick="showScreen('uradno'); setTimeout(()=> {document.getElementById('u-trgovina-filter') ? document.getElementById('u-trgovina-filter').value='${k.firma}' : null; filterUradno('Vse', '${k.firma}');}, 100);" class="w-full bg-slate-100 py-2 rounded font-bold text-[10px] uppercase text-slate-600 mt-2">Dokumenti podjetja</button>
+                        <div class="flex items-center gap-2" onclick="event.stopPropagation()">
+                            ${k.telefon ? `<a href="tel:${k.telefon}" class="bg-green-100 p-2 rounded-full text-green-700 shadow-sm">📞</a>` : ''}
+                            ${k.whatsapp ? `<a href="https://wa.me/${k.whatsapp.replace(/[^0-9]/g, '')}" target="_blank" class="bg-emerald-500 p-2 rounded-full text-white shadow-sm">💬</a>` : ''}
+                            ${k.email ? `<a href="mailto:${k.email}" class="bg-blue-100 p-2 rounded-full text-blue-700 shadow-sm">✉️</a>` : ''}
+                            <button onclick="openKontaktViewModal('${k.id}')" class="text-slate-400 font-black text-lg pl-1">›</button>
+                        </div>
                     </div>`;
             });
+
+            if (window.allContacts.length === 0) {
+                list.innerHTML = "<p class='text-center text-slate-400 italic text-xs mt-6'>Ni shranjenih kontaktov. Klikni '+ Nov' za dodajanje.</p>";
+            }
         }
+
+        window.openKontaktViewModal = (id) => {
+            const k = window.allContacts.find(x => x.id === id);
+            if (!k) return;
+
+            document.getElementById('kv-ime').innerText = k.ime || 'Brez imena';
+            document.getElementById('kv-firma').innerText = k.firma || '-';
+            document.getElementById('kv-podatki').innerText = k.podatki || 'Ni vpisanih podatkov podjetja.';
+            document.getElementById('kv-naslov').innerText = k.naslov || 'Ni vpisanega naslova.';
+            document.getElementById('kv-opombe').innerText = k.opombe || 'Brez opomb.';
+
+            const telWrap = document.getElementById('kv-telefon-wrap');
+            if (k.telefon) {
+                telWrap.classList.remove('hidden');
+                telWrap.href = `tel:${k.telefon}`;
+                document.getElementById('kv-telefon').innerText = k.telefon;
+            } else {
+                telWrap.classList.add('hidden');
+            }
+
+            const waWrap = document.getElementById('kv-whatsapp-wrap');
+            if (k.whatsapp) {
+                waWrap.classList.remove('hidden');
+                waWrap.href = `https://wa.me/${k.whatsapp.replace(/[^0-9]/g, '')}`;
+                document.getElementById('kv-whatsapp').innerText = k.whatsapp;
+            } else {
+                waWrap.classList.add('hidden');
+            }
+
+            const mailWrap = document.getElementById('kv-email-wrap');
+            if (k.email) {
+                mailWrap.classList.remove('hidden');
+                mailWrap.href = `mailto:${k.email}`;
+                document.getElementById('kv-email').innerText = k.email;
+            } else {
+                mailWrap.classList.add('hidden');
+            }
+
+            document.getElementById('kv-btn-dokumenti').onclick = () => {
+                closeModal('kontakt-view-modal');
+                showScreen('uradno', true);
+                filterUradno('Vse', k.firma);
+            };
+
+            document.getElementById('kv-btn-uredi').onclick = () => {
+                closeModal('kontakt-view-modal');
+                openKontaktModal(k.id);
+            };
+
+            document.getElementById('kv-btn-izbrisi').onclick = async () => {
+                if (confirm(`Izbrišem kontakt "${k.ime}"?`)) {
+                    await deleteDoc(doc(db, "kontakti", k.id));
+                    closeModal('kontakt-view-modal');
+                    naloziKontakte();
+                }
+            };
+
+            document.getElementById('kontakt-view-modal').classList.remove('hidden');
+        };
 
         window.openKontaktModal = async (id = null) => {
             document.getElementById('kontakt-id').value = id || "";
             const mTitle = document.getElementById('kontakt-modal-title');
             
-            if(id) {
+            if (id) {
                 mTitle.innerText = "Uredi Kontakt";
                 const snap = await getDoc(doc(db, "kontakti", id));
-                if(snap.exists()){
+                if (snap.exists()) {
                     const data = snap.data();
                     document.getElementById('k-ime').value = data.ime || "";
                     document.getElementById('k-firma').value = data.firma || trgovine[0];
@@ -691,190 +1190,204 @@
         window.shraniKontakt = async () => {
             const id = document.getElementById('kontakt-id').value;
             const data = {
-                ime: document.getElementById('k-ime').value, firma: document.getElementById('k-firma').value,
-                podatki: document.getElementById('k-podatki').value, naslov: document.getElementById('k-naslov').value,
-                telefon: document.getElementById('k-telefon').value, email: document.getElementById('k-email').value,
-                whatsapp: document.getElementById('k-whatsapp').value, opombe: document.getElementById('k-opombe').value
+                ime: document.getElementById('k-ime').value,
+                firma: document.getElementById('k-firma').value,
+                podatki: document.getElementById('k-podatki').value,
+                naslov: document.getElementById('k-naslov').value,
+                telefon: document.getElementById('k-telefon').value,
+                email: document.getElementById('k-email').value,
+                whatsapp: document.getElementById('k-whatsapp').value,
+                opombe: document.getElementById('k-opombe').value
             };
             
-            if(id) {
+            if (id) {
                 await updateDoc(doc(db, "kontakti", id), data);
             } else {
                 await addDoc(collection(db, "kontakti"), data);
             }
             
-            closeModal('kontakt-modal'); naloziKontakte();
+            closeModal('kontakt-modal');
+            naloziKontakte();
         };
 
-        window.filterUradno = async (tip, specFirma = null) => {
+        // ==================== URADNO (Z NALAGANJEM DATOTEK) ====================
+        window.filterUradno = async (tip, specFirma = window.currentUradnoFirma) => {
+            window.currentUradnoTip = tip;
+            window.currentUradnoFirma = specFirma;
+
             const btnDob = document.getElementById('tab-dobavnica');
             const btnRac = document.getElementById('tab-racun');
-            if(btnDob && btnRac) {
-                const activeClasses = "flex-1 py-3 rounded-xl border font-black text-xs uppercase transition-all bg-slate-800 text-white border-slate-800 shadow-md".split(" ");
-                const inactiveClasses = "flex-1 py-3 rounded-xl border font-black text-xs uppercase transition-all bg-white text-slate-600 border-slate-200 shadow-sm".split(" ");
-                
-                if(tip === 'Dobavnica') {
-                    btnDob.className = ""; btnDob.classList.add(...activeClasses);
-                    btnRac.className = ""; btnRac.classList.add(...inactiveClasses);
-                } else if(tip === 'Racun') {
-                    btnRac.className = ""; btnRac.classList.add(...activeClasses);
-                    btnDob.className = ""; btnDob.classList.add(...inactiveClasses);
-                } else {
-                    btnDob.className = ""; btnDob.classList.add(...inactiveClasses);
-                    btnRac.className = ""; btnRac.classList.add(...inactiveClasses);
-                }
+            const btnVse = document.getElementById('tab-vse');
+            
+            const activeClass = "py-3 rounded-xl border font-black text-xs uppercase transition-all bg-slate-800 text-white border-slate-800 shadow-md";
+            const inactiveClass = "py-3 rounded-xl border font-black text-xs uppercase transition-all bg-white text-slate-600 border-slate-200 shadow-sm";
+
+            if (btnDob) btnDob.className = `flex-1 ${tip === 'Dobavnica' ? activeClass : inactiveClass}`;
+            if (btnRac) btnRac.className = `flex-1 ${tip === 'Racun' ? activeClass : inactiveClass}`;
+            if (btnVse) btnVse.className = `px-3 ${tip === 'Vse' ? activeClass : inactiveClass}`;
+
+            const filterBox = document.getElementById('uradno-active-filter');
+            if (specFirma) {
+                filterBox.classList.remove('hidden');
+                document.getElementById('uradno-filter-text').innerText = `Dokumenti stranke: ${specFirma}`;
+            } else {
+                filterBox.classList.add('hidden');
             }
 
             const list = document.getElementById('uradno-list');
             list.innerHTML = "<p class='text-center text-slate-400 italic text-xs mt-4'>Nalagam...</p>";
             const snap = await getDocs(collection(db, "dokumenti"));
             list.innerHTML = "";
+
+            let docs = [];
             snap.forEach(d => {
                 const data = d.data();
-                if((tip === 'Vse' || data.tip === tip) && (!specFirma || data.trgovina === specFirma)) {
+                data.id = d.id;
+                docs.push(data);
+            });
+            docs.sort((a, b) => (parseDatum(b.datum) || 0) - (parseDatum(a.datum) || 0));
+
+            let count = 0;
+            docs.forEach(data => {
+                if ((tip === 'Vse' || data.tip === tip) && (!specFirma || data.trgovina === specFirma)) {
+                    count++;
+                    const tDate = parseDatum(data.datum);
+                    const datStr = tDate ? tDate.toLocaleDateString('sl-SI') : '';
                     list.innerHTML += `
-                        <div class="bg-white p-3 rounded-xl border border-slate-100 flex justify-between items-center shadow-sm">
+                        <div class="bg-white p-3.5 rounded-xl border border-slate-100 flex justify-between items-center shadow-sm">
                             <div>
-                                <span class="text-[9px] font-black uppercase text-slate-400">${data.tip}</span>
-                                <p class="font-bold text-sm text-slate-700">${data.trgovina}</p>
-                                <p class="text-[10px] text-slate-500 italic">${data.opis}</p>
+                                <span class="text-[9px] font-black uppercase px-2 py-0.5 rounded ${data.tip === 'Racun' ? 'bg-yellow-100 text-yellow-800' : 'bg-teal-100 text-teal-800'}">${data.tip}</span>
+                                <span class="text-[9px] text-slate-400 font-bold ml-1">${datStr}</span>
+                                <p class="font-black text-sm text-slate-700 mt-1">${data.trgovina}</p>
+                                <p class="text-[11px] text-slate-500 italic">${data.opis || '-'}</p>
                             </div>
-                            ${data.link ? `<a href="${data.link}" target="_blank" class="bg-slate-800 text-white px-3 py-2 rounded-lg font-black text-[10px] uppercase">Odpri</a>` : ''}
+                            <div class="flex items-center gap-2">
+                                ${data.link ? `<a href="${data.link}" target="_blank" class="bg-slate-800 text-white px-3 py-2 rounded-lg font-black text-[10px] uppercase shadow-sm">Odpri</a>` : ''}
+                                <button onclick="izbrisiDokument('${data.id}')" class="bg-red-50 text-red-500 p-2 rounded-lg text-xs">🗑️</button>
+                            </div>
                         </div>`;
                 }
             });
-        };
 
-        window.openUradnoModal = () => document.getElementById('uradno-modal').classList.remove('hidden');
-        window.shraniDokument = async () => {
-            const data = {
-                tip: document.getElementById('u-tip').value, trgovina: document.getElementById('u-trgovina').value,
-                opis: document.getElementById('u-opis').value, link: document.getElementById('u-link').value, datum: new Date()
-            };
-            await addDoc(collection(db, "dokumenti"), data);
-            closeModal('uradno-modal'); filterUradno(data.tip);
-        };
-
-        const trgPro = document.getElementById('sel-trg-pro');
-        const trgPos = document.getElementById('sel-trg-pos');
-        const editTrg = document.getElementById('edit-trg');
-        const kFirma = document.getElementById('k-firma');
-        const uTrg = document.getElementById('u-trgovina');
-        
-        trgovine.forEach(t => { 
-            const opt = `<option value="${t}">${t}</option>`;
-            trgPro.innerHTML += opt; trgPos.innerHTML += opt; editTrg.innerHTML += opt; kFirma.innerHTML += opt; uTrg.innerHTML += opt;
-        });
-
-        // GENERIRANJE SEZNAMOV NALEPK ZA POŠILJKO IN STROŠKE
-        const pList = document.getElementById('posiljka-list');
-        const sList = document.getElementById('strosek-nalepke-list');
-        
-        Object.entries(kategorije).forEach(([kat, items]) => {
-            const katHtml = `<div class="category-header">${kat}</div>`;
-            pList.innerHTML += katHtml;
-            if(sList) sList.innerHTML += katHtml;
-
-            items.sort().forEach(n => {
-                const itemRow = `<div class="flex items-center justify-between bg-white p-3 border-b italic"><span class="font-bold text-[10px] uppercase text-slate-500">${n}</span><input type="number" data-name="${n}" class="w-16 p-2 bg-slate-50 rounded text-center font-black border border-slate-200 outline-none" placeholder="0"></div>`;
-                pList.innerHTML += itemRow;
-                if(sList) sList.innerHTML += itemRow;
-            });
-        });
-
-        async function naloziZalogo() {
-            const snap = await getDoc(doc(db, "zaloga", "glavno_skladisce"));
-            const data = snap.data() || {};
-            const container = document.getElementById('zaloga-container');
-            container.innerHTML = "";
-            Object.entries(kategorije).forEach(([kat, items]) => {
-                let html = `<div class="bg-white rounded-xl shadow-sm overflow-hidden mb-4 border border-light-teal"><div class="category-header" style="margin-top:0;">${kat}</div><div class="divide-y divide-slate-50">`;
-                items.sort().forEach(item => {
-                    const count = data[item] || 0;
-                    html += `<div class="flex justify-between p-3 italic font-bold uppercase text-[10px]"><span>${item}</span><span class="${count < 50 ? 'text-red-500 font-black' : 'text-main-teal'}">${count}</span></div>`;
-                });
-                container.innerHTML += html + `</div></div>`;
-            });
-        }
-
-        document.getElementById('btn-save-pro').onclick = async () => {
-            const kol = parseInt(document.getElementById('input-prodaja-total').value);
-            if (!kol) return;
-            const trg = document.getElementById('sel-trg-pro').value;
-            let d = document.getElementById('input-prodaja-datum').value;
-            const datumVnosa = d ? new Date(d) : new Date();
-            const set = await getDoc(doc(db, "nastavitve", "cenik"));
-            const cena = set.exists() ? (set.data()[trg] !== undefined ? set.data()[trg] : 1) : 1;
-            
-            await addDoc(collection(db, "transakcije"), { tip: "Prodaja", trgovina: trg, znesek: kol * cena, kolicina: kol, datum: datumVnosa, placan: false });
-            location.reload();
-        };
-
-        document.getElementById('btn-save-pos').onclick = async () => {
-            const updates = {}; const artikli = {}; let total = 0;
-            let d = document.getElementById('input-posiljka-datum').value;
-            const datumVnosa = d ? new Date(d) : new Date();
-
-            document.querySelectorAll('#posiljka-list input').forEach(inp => {
-                const v = parseInt(inp.value); 
-                if(v > 0) { updates[inp.dataset.name] = increment(-v); artikli[inp.dataset.name] = v; total += v; }
-            });
-            if(total > 0) {
-                await updateDoc(doc(db, "zaloga", "glavno_skladisce"), updates);
-                await addDoc(collection(db, "transakcije"), { tip: "Posiljka", trgovina: document.getElementById('sel-trg-pos').value, kolicina: total, artikli: artikli, datum: datumVnosa });
-                location.reload();
+            if (count === 0) {
+                list.innerHTML = "<p class='text-center text-slate-400 italic text-xs mt-6'>Ni najdenih dokumentov.</p>";
             }
         };
 
+        window.openUradnoModal = () => {
+            document.getElementById('u-opis').value = "";
+            document.getElementById('u-file').value = "";
+            document.getElementById('u-link').value = "";
+            if (window.currentUradnoFirma) {
+                document.getElementById('u-trgovina').value = window.currentUradnoFirma;
+            }
+            document.getElementById('uradno-modal').classList.remove('hidden');
+        };
+
+        window.shraniDokument = async () => {
+            const btn = document.getElementById('btn-save-doc');
+            btn.innerText = "Nalagam...";
+            btn.disabled = true;
+
+            const fileInput = document.getElementById('u-file');
+            let fileUrl = document.getElementById('u-link').value.trim();
+
+            try {
+                if (fileInput.files.length > 0) {
+                    const file = fileInput.files[0];
+                    const storageRef = ref(storage, 'dokumenti/' + Date.now() + '_' + file.name);
+                    await uploadBytes(storageRef, file);
+                    fileUrl = await getDownloadURL(storageRef);
+                }
+
+                const tip = document.getElementById('u-tip').value;
+                const data = {
+                    tip: tip,
+                    trgovina: document.getElementById('u-trgovina').value,
+                    opis: document.getElementById('u-opis').value,
+                    link: fileUrl,
+                    datum: new Date()
+                };
+                
+                await addDoc(collection(db, "dokumenti"), data);
+                closeModal('uradno-modal');
+                filterUradno(tip, window.currentUradnoFirma);
+            } catch (error) {
+                console.error("Napaka pri nalaganju dokumenta:", error);
+                alert("Napaka pri nalaganju datoteke. Preveri internetno povezavo ali Firebase Storage pravila.");
+            } finally {
+                btn.innerText = "Naloži in Shrani";
+                btn.disabled = false;
+            }
+        };
+
+        window.izbrisiDokument = async (id) => {
+            if (confirm("Izbrišem ta dokument?")) {
+                await deleteDoc(doc(db, "dokumenti", id));
+                filterUradno(window.currentUradnoTip, window.currentUradnoFirma);
+            }
+        };
+
+        // ==================== ADMIN ====================
         async function naloziAdminZalogo() {
             const div = document.getElementById('admin-zaloga-edit');
             const snap = await getDoc(doc(db, "zaloga", "glavno_skladisce"));
-            const d = snap.data() || {};
+            const d = snap.exists() ? snap.data() : {};
             div.innerHTML = "";
+            const mode = document.getElementById('edit-mode-toggle').checked;
+
             Object.entries(kategorije).forEach(([kat, items]) => {
                 let html = `<div class="bg-white rounded-xl shadow-sm overflow-hidden mb-4 border border-main-teal"><div class="category-header" style="margin-top:0; border-radius:0;">${kat}</div><div class="divide-y divide-slate-100">`;
                 items.sort().forEach(n => {
-                    html += `<div class="flex items-center justify-between p-2"><span class="uppercase font-bold text-[10px] text-slate-600">${n}</span><div class="flex gap-2"><input type="number" id="adj-${n}" class="admin-edit-input w-16 p-1 border rounded text-right font-black bg-slate-50" value="${d[n] || 0}" disabled><button onclick="window.saveSingleZaloga('${n}')" class="admin-edit-input bg-light-teal text-white px-2 rounded hidden font-bold text-xs">OK</button></div></div>`;
+                    html += `<div class="flex items-center justify-between p-2"><span class="uppercase font-bold text-[10px] text-slate-600">${n}</span><div class="flex gap-2"><input type="number" id="adj-${n}" class="admin-edit-input w-16 p-1 border rounded text-right font-black bg-slate-50" value="${d[n] || 0}" ${mode ? '' : 'disabled'}><button onclick="window.saveSingleZaloga('${n}')" class="admin-edit-input bg-light-teal text-white px-2 rounded ${mode ? '' : 'hidden'} font-bold text-xs">OK</button></div></div>`;
                 });
                 div.innerHTML += html + `</div></div>`;
             });
         }
 
         window.saveSingleZaloga = async (ime) => {
-            const val = parseInt(document.getElementById(`adj-${ime}`).value);
-            await updateDoc(doc(db, "zaloga", "glavno_skladisce"), { [ime]: val });
-            alert(`${ime} posodobljeno!`);
+            const val = parseInt(document.getElementById(`adj-${ime}`).value) || 0;
+            await setDoc(doc(db, "zaloga", "glavno_skladisce"), { [ime]: val }, { merge: true });
+            alert(`${ime}: zaloga nastavljena na ${val}!`);
         };
 
         async function naloziCenik() {
             const div = document.getElementById('admin-cenik-list'); 
             const snap = await getDoc(doc(db, "nastavitve", "cenik"));
-            const data = snap.exists() ? snap.data() : {}; div.innerHTML = "";
+            const data = snap.exists() ? snap.data() : {};
+            div.innerHTML = "";
+            const mode = document.getElementById('edit-mode-toggle').checked;
+
             trgovine.forEach(t => {
                 const cena = data[t] !== undefined ? data[t] : 1;
-                div.innerHTML += `<div class="flex items-center justify-between p-2 border-b"><span>${t}</span><input type="number" step="0.1" class="admin-edit-input w-12 p-1 border rounded text-right bg-slate-50" value="${cena}" disabled onchange="window.updateCena('${t}', this.value)"></div>`;
+                div.innerHTML += `<div class="flex items-center justify-between p-2 border-b"><span>${t}</span><input type="number" step="0.1" class="admin-edit-input w-16 p-1 border rounded text-right bg-slate-50 font-black" value="${cena}" ${mode ? '' : 'disabled'} onchange="window.updateCena('${t}', this.value)"></div>`;
             });
         }
         
-        window.updateCena = async (trg, val) => { await setDoc(doc(db, "nastavitve", "cenik"), { [trg]: parseFloat(val) }, { merge: true }); };
+        window.updateCena = async (trg, val) => {
+            await setDoc(doc(db, "nastavitve", "cenik"), { [trg]: parseFloat(val) || 0 }, { merge: true });
+        };
 
         window.toggleEditMode = () => {
             const mode = document.getElementById('edit-mode-toggle').checked;
             document.querySelectorAll('.admin-edit-input').forEach(inp => {
-                inp.disabled = !mode; if(inp.tagName === "BUTTON") inp.classList.toggle('hidden', !mode);
+                inp.disabled = !mode;
+                if (inp.tagName === "BUTTON") inp.classList.toggle('hidden', !mode);
             });
         };
 
         async function naloziLog() {
             const list = document.getElementById('admin-log-list'); 
             const q = query(collection(db, "transakcije"), orderBy("datum", "desc"));
-            const snap = await getDocs(q); list.innerHTML = "";
+            const snap = await getDocs(q);
+            list.innerHTML = "";
             snap.forEach(d => {
                 const data = d.data();
-                const datum = data.datum ? data.datum.toDate().toLocaleDateString('sl-SI') : '';
+                const tDate = parseDatum(data.datum);
+                const datum = tDate ? tDate.toLocaleDateString('sl-SI') : '';
                 let detalji = "";
-                if(data.tip === "Nabava") {
-                    detalji = `<span class="font-black text-red-500">${data.kategorija || 'Nabava'}: ${data.strosek ? data.strosek.toFixed(2) : '0.00'}€</span>`;
+                if (data.tip === "Nabava") {
+                    detalji = `<span class="font-black text-red-500">${data.kategorija || 'Nabava'}: ${(data.strosek || 0).toFixed(2)}€ ${data.kolicina ? `(${data.kolicina} kos)` : ''}</span>`;
                 } else {
                     detalji = `<span class="font-black text-yellow-600">${data.kolicina || 0} kos ${data.znesek ? `| ${data.znesek.toFixed(2)}€` : ''}</span>`;
                 }
@@ -886,103 +1399,172 @@
                             <div class="text-right flex flex-col"><span class="font-bold text-slate-600">${data.trgovina || data.opis || '-'}</span>${detalji}</div>
                         </div>
                         <div class="flex justify-end gap-2 mt-1 border-t pt-2 border-slate-50">
-                            <button onclick="openEditModal('${d.id}')" class="text-[10px] font-bold bg-slate-100 text-slate-500 px-3 py-1 rounded uppercase">Uredi</button>
+                            <button onclick="openEditModal('${d.id}')" class="text-[10px] font-bold bg-slate-100 text-slate-600 px-3 py-1 rounded uppercase">Uredi</button>
                             <button onclick="deleteLog('${d.id}')" class="text-[10px] font-bold bg-red-50 text-red-500 px-3 py-1 rounded uppercase">Izbriši</button>
                         </div>
                     </div>`;
             });
         }
 
+        // Brisanje loga z avtomatsko povrnitvijo zaloge
         window.deleteLog = async (id) => { 
-            if(confirm("Izbrišem ta vnos?")) { 
-                await deleteDoc(doc(db, "transakcije", id)); 
-                if(document.getElementById('admin').classList.contains('active')) naloziLog();
-            } 
+            if (!confirm("Izbrišem ta vnos? (Če gre za pošiljko ali nakup nalepk, se bo ustrezno popravila tudi zaloga)")) return;
+            
+            const docRef = doc(db, "transakcije", id);
+            const snap = await getDoc(docRef);
+            if (snap.exists()) {
+                const data = snap.data();
+                if (data.artikli && Object.keys(data.artikli).length > 0) {
+                    let stockRevert = {};
+                    for (const [name, kol] of Object.entries(data.artikli)) {
+                        const v = parseInt(kol) || 0;
+                        if (v > 0) {
+                            if (data.tip === "Posiljka") stockRevert[name] = increment(v); // Vrnemo v skladišče
+                            if (data.tip === "Nabava") stockRevert[name] = increment(-v);  // Odštejemo iz skladišča
+                        }
+                    }
+                    if (Object.keys(stockRevert).length > 0) {
+                        await setDoc(doc(db, "zaloga", "glavno_skladisce"), stockRevert, { merge: true });
+                    }
+                }
+                await deleteDoc(docRef);
+            }
+            if (document.getElementById('admin').classList.contains('active')) naloziLog();
+        };
+
+        window.updateLiveEditSum = () => {
+            let sum = 0;
+            document.querySelectorAll('.edit-art-input').forEach(inp => {
+                sum += (parseInt(inp.value) || 0);
+            });
+            document.getElementById('edit-live-sum').innerText = `Nov seštevek: ${sum} kos`;
         };
 
         window.openEditModal = async (id) => {
             const docRef = doc(db, "transakcije", id);
             const docSnap = await getDoc(docRef);
-            if (docSnap.exists()) {
-                const data = docSnap.data();
-                document.getElementById('edit-id').value = id; 
-                document.getElementById('edit-tip').value = data.tip; 
-                document.getElementById('edit-trg').value = data.trgovina || trgovine[0];
-                
-                if (data.datum) {
-                    const d = data.datum.toDate(); d.setMinutes(d.getMinutes() - d.getTimezoneOffset());
-                    document.getElementById('edit-datum').value = d.toISOString().split('T')[0];
-                }
-                
-                const valZnesek = document.getElementById('edit-kol-znesek-container');
-                const valArtikli = document.getElementById('edit-artikli-container');
-                const valTrg = document.getElementById('edit-trg-container');
-                window.currentEditArtikli = data.artikli || {};
+            if (!docSnap.exists()) return;
 
-                if (data.tip === "Posiljka" || (data.tip === "Nabava" && data.kategorija === "Nakup nalepk")) {
-                    valZnesek.classList.remove('hidden'); valArtikli.classList.remove('hidden'); 
-                    if(data.tip === "Nabava") {
-                        valTrg.classList.add('hidden');
-                        document.getElementById('edit-kol').value = data.kolicina || 0;
-                        document.getElementById('edit-znesek').value = data.strosek || 0;
-                    } else {
-                        valTrg.classList.remove('hidden');
-                        valZnesek.classList.add('hidden');
-                    }
-                    
-                    const listArtikli = document.getElementById('edit-artikli-list'); listArtikli.innerHTML = "";
-                    Object.values(kategorije).flat().sort().forEach(n => {
-                        const kos = window.currentEditArtikli[n] || 0;
-                        listArtikli.innerHTML += `<div class="flex justify-between items-center bg-slate-50 p-2 rounded"><span class="text-[10px] uppercase font-bold text-slate-600">${n}</span><input type="number" data-editname="${n}" class="edit-art-input w-16 p-1 text-center border rounded font-black text-main-teal" value="${kos}"></div>`;
-                    });
-                } else if (data.tip === "Nabava") {
-                    valZnesek.classList.remove('hidden'); valArtikli.classList.add('hidden'); valTrg.classList.add('hidden');
-                    document.getElementById('edit-znesek').value = data.strosek || 0; 
-                    document.getElementById('edit-kol').value = 0;
-                } else {
-                    valZnesek.classList.remove('hidden'); valArtikli.classList.add('hidden'); valTrg.classList.remove('hidden');
-                    document.getElementById('edit-kol').value = data.kolicina || 0; document.getElementById('edit-znesek').value = data.znesek || 0;
-                }
-                document.getElementById('edit-modal').classList.remove('hidden');
+            const data = docSnap.data();
+            document.getElementById('edit-id').value = id; 
+            document.getElementById('edit-tip').value = data.tip; 
+            document.getElementById('edit-trg').value = data.trgovina || trgovine[0];
+            document.getElementById('edit-opis').value = data.opis || "";
+            
+            const tDate = parseDatum(data.datum);
+            if (tDate) {
+                const d = new Date(tDate.getTime());
+                d.setMinutes(d.getMinutes() - d.getTimezoneOffset());
+                document.getElementById('edit-datum').value = d.toISOString().split('T')[0];
             }
+            
+            const valZnesek = document.getElementById('edit-kol-znesek-container');
+            const valKolWrap = document.getElementById('edit-kol-wrapper');
+            const valArtikli = document.getElementById('edit-artikli-container');
+            const valTrg = document.getElementById('edit-trg-container');
+            const valOpis = document.getElementById('edit-opis-container');
+            
+            window.currentEditArtikli = data.artikli || {};
+            window.currentEditKategorija = data.kategorija || null;
+
+            const listArtikli = document.getElementById('edit-artikli-list');
+            listArtikli.innerHTML = "";
+            Object.values(kategorije).flat().sort().forEach(n => {
+                const kos = window.currentEditArtikli[n] || 0;
+                listArtikli.innerHTML += `<div class="flex justify-between items-center bg-slate-50 p-2 rounded"><span class="text-[10px] uppercase font-bold text-slate-600">${n}</span><input type="number" data-editname="${n}" oninput="updateLiveEditSum()" class="edit-art-input w-16 p-1 text-center border rounded font-black text-main-teal" value="${kos}"></div>`;
+            });
+
+            document.getElementById('edit-old-kol-info').innerText = `Prvotno vpisano: ${data.kolicina || 0} kos`;
+            updateLiveEditSum();
+
+            if (data.tip === "Posiljka") {
+                valTrg.classList.remove('hidden');
+                valOpis.classList.add('hidden');
+                valZnesek.classList.add('hidden');
+                valArtikli.classList.remove('hidden');
+            } else if (data.tip === "Nabava") {
+                valTrg.classList.add('hidden');
+                valOpis.classList.remove('hidden');
+                valZnesek.classList.remove('hidden');
+                valKolWrap.classList.add('hidden');
+                document.getElementById('edit-znesek').value = data.strosek || 0;
+                if (data.kategorija === "Nakup nalepk" || data.artikli) {
+                    valArtikli.classList.remove('hidden');
+                } else {
+                    valArtikli.classList.add('hidden');
+                }
+            } else {
+                // Prodaja
+                valTrg.classList.remove('hidden');
+                valOpis.classList.add('hidden');
+                valZnesek.classList.remove('hidden');
+                valKolWrap.classList.remove('hidden');
+                valArtikli.classList.remove('hidden');
+                document.getElementById('edit-kol').value = data.kolicina || 0;
+                document.getElementById('edit-znesek').value = data.znesek || 0;
+            }
+
+            document.getElementById('edit-modal').classList.remove('hidden');
         };
 
         window.saveEdit = async () => {
-            const id = document.getElementById('edit-id').value; const tip = document.getElementById('edit-tip').value;
+            const id = document.getElementById('edit-id').value;
+            const tip = document.getElementById('edit-tip').value;
             let updateData = { datum: new Date(document.getElementById('edit-datum').value || new Date()) };
 
             if (tip !== "Nabava") {
                 updateData.trgovina = document.getElementById('edit-trg').value;
+            } else {
+                updateData.opis = document.getElementById('edit-opis').value;
             }
 
-            if (tip === "Posiljka" || (tip === "Nabava" && window.currentEditArtikli)) {
-                let newArtikli = {}; let newTotal = 0; let stockUpdates = {};
-                document.querySelectorAll('.edit-art-input').forEach(inp => {
-                    const v = parseInt(inp.value) || 0; const name = inp.dataset.editname; const oldV = window.currentEditArtikli[name] || 0;
-                    if (v > 0) newArtikli[name] = v; newTotal += v;
-                    const diff = v - oldV; 
-                    if (diff !== 0) {
-                        stockUpdates[name] = increment(tip === "Posiljka" ? -diff : diff);
-                    }
-                });
-                updateData.kolicina = newTotal; updateData.artikli = newArtikli;
-                if (Object.keys(stockUpdates).length > 0) await updateDoc(doc(db, "zaloga", "glavno_skladisce"), stockUpdates);
-            }
-            
-            if (tip === "Nabava") {
+            let newArtikli = {};
+            let newTotal = 0;
+            let stockUpdates = {};
+
+            document.querySelectorAll('.edit-art-input').forEach(inp => {
+                const v = parseInt(inp.value) || 0;
+                const name = inp.dataset.editname;
+                const oldV = parseInt(window.currentEditArtikli[name]) || 0;
+                if (v > 0) newArtikli[name] = v;
+                newTotal += v;
+                const diff = v - oldV;
+                if (diff !== 0) {
+                    if (tip === "Posiljka") stockUpdates[name] = increment(-diff);
+                    if (tip === "Nabava") stockUpdates[name] = increment(diff);
+                }
+            });
+
+            if (tip === "Posiljka") {
+                updateData.kolicina = newTotal;
+                updateData.artikli = newArtikli;
+                if (Object.keys(stockUpdates).length > 0) {
+                    await setDoc(doc(db, "zaloga", "glavno_skladisce"), stockUpdates, { merge: true });
+                }
+            } else if (tip === "Nabava") {
                 updateData.strosek = parseFloat(document.getElementById('edit-znesek').value) || 0;
+                if (window.currentEditKategorija === "Nakup nalepk" || Object.keys(newArtikli).length > 0) {
+                    updateData.kolicina = newTotal;
+                    updateData.artikli = newArtikli;
+                    if (Object.keys(stockUpdates).length > 0) {
+                        await setDoc(doc(db, "zaloga", "glavno_skladisce"), stockUpdates, { merge: true });
+                    }
+                }
             } else if (tip === "Prodaja") {
-                updateData.kolicina = parseInt(document.getElementById('edit-kol').value) || 0;
+                const manualKol = parseInt(document.getElementById('edit-kol').value) || 0;
+                updateData.kolicina = newTotal > 0 ? newTotal : manualKol;
                 updateData.znesek = parseFloat(document.getElementById('edit-znesek').value) || 0;
+                updateData.artikli = newTotal > 0 ? newArtikli : null;
             }
             
             await updateDoc(doc(db, "transakcije", id), updateData);
             closeModal('edit-modal'); 
-            if(document.getElementById('admin').classList.contains('active')) naloziLog();
+            if (document.getElementById('admin').classList.contains('active')) naloziLog();
         };
 
         const today = new Date().toISOString().split('T')[0];
-        document.getElementById('input-prodaja-datum').value = today; document.getElementById('input-posiljka-datum').value = today;
+        document.getElementById('input-prodaja-datum').value = today;
+        document.getElementById('input-posiljka-datum').value = today;
         document.getElementById('input-strosek-datum').value = today;
         
         showScreen('main-menu');
