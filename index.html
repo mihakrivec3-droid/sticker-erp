@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-    <title>Sticker Log</title>
+    <title>Lepka</title>
     
     <link rel="manifest" href="manifest.json">
     <link rel="apple-touch-icon" href="by%20Lepka%20logo.png">
@@ -37,6 +37,27 @@
         .fin-box { border: 2px solid rgba(255,255,255,0.2); padding: 8px 4px; display: flex; flex-direction: column; justify-content: center; align-items: center; border-radius: 8px; background: rgba(0,0,0,0.1); }
         .category-header { background: #447B7A; padding: 10px 16px; font-size: 11px; font-weight: 900; color: white; text-transform: uppercase; border-radius: 8px 8px 0 0; margin-top: 15px; border-bottom: 2px solid #d4af37; }
         
+        /* Božična rdeče-zelena glava za kategorijo Zima */
+        .category-header-zima {
+            background: repeating-linear-gradient(
+                135deg,
+                #b91c1c,
+                #b91c1c 16px,
+                #15803d 16px,
+                #15803d 32px
+            );
+            padding: 10px 16px;
+            font-size: 11px;
+            font-weight: 900;
+            color: white;
+            text-transform: uppercase;
+            border-radius: 8px 8px 0 0;
+            margin-top: 15px;
+            border-bottom: 3px solid #facc15;
+            text-shadow: 0 1px 3px rgba(0, 0, 0, 0.7);
+            letter-spacing: 0.05em;
+        }
+
         details > summary { list-style: none; cursor: pointer; }
         details > summary::-webkit-details-marker { display: none; }
     </style>
@@ -51,7 +72,7 @@
                     <div class="bg-white p-1 rounded-full shadow-inner">
                         <img src="by%20Lepka%20logo.png" alt="Logo" class="w-9 h-9 rounded-full object-cover" onerror="this.style.display='none'">
                     </div>
-                    <h1 onclick="showScreen('main-menu')" class="font-black italic text-yellow-500 text-2xl tracking-tighter uppercase cursor-pointer drop-shadow-md">Sticker Log</h1>
+                    <h1 onclick="showScreen('main-menu')" class="font-black italic text-yellow-500 text-2xl tracking-tighter uppercase cursor-pointer drop-shadow-md">Lepka</h1>
                 </div>
                 <button onclick="showScreen('admin')" class="bg-yellow-600 text-white px-3 py-1.5 rounded-lg text-[10px] font-black uppercase tracking-widest shadow-md">Admin</button>
             </div>
@@ -76,15 +97,22 @@
 
     <!-- GLAVNI MENI / LANDING PAGE -->
     <div id="main-menu" class="screen active p-6 space-y-4 max-w-md mx-auto">
-        <!-- STATISTIKA PRODANIH NALEPK NA PRVI STRANI -->
-        <div class="bg-white p-4 rounded-[20px] card-shadow border-l-4 border-yellow-500 flex justify-between items-center italic">
-            <div>
-                <p id="label-prejsnji-mesec" class="text-[9px] uppercase font-black text-slate-400">Prodano (prejšnji mesec)</p>
-                <p id="dash-prodano-prejsnji-mesec" class="text-xl font-black text-main-teal">0 kos</p>
+        <!-- STATISTIKA PRODANIH ARTIKLOV NA PRVI STRANI -->
+        <div class="bg-white p-4 rounded-[20px] card-shadow border-l-4 border-yellow-500 italic">
+            <div class="flex justify-between items-center">
+                <div>
+                    <p id="label-prejsnji-mesec" class="text-[9px] uppercase font-black text-slate-400">Prodano (prejšnji mesec)</p>
+                    <p id="dash-prodano-prejsnji-mesec" class="text-xl font-black text-main-teal">0 kos</p>
+                </div>
+                <div class="text-right border-l pl-4 border-slate-100">
+                    <p class="text-[9px] uppercase font-black text-slate-400">Skupno prodano (vse)</p>
+                    <p id="dash-prodano-skupno" class="text-xl font-black text-yellow-600">0 kos</p>
+                </div>
             </div>
-            <div class="text-right border-l pl-4 border-slate-100">
-                <p class="text-[9px] uppercase font-black text-slate-400">Skupno prodane nalepke</p>
-                <p id="dash-prodano-skupno" class="text-xl font-black text-yellow-600">0 kos</p>
+            <div class="grid grid-cols-3 gap-2 mt-3 pt-2 border-t border-slate-100 text-center text-[9px] font-bold uppercase text-slate-500">
+                <div>🏷️ Nalepke: <span id="dash-skupno-nalepke" class="font-black text-main-teal">0</span></div>
+                <div>✉️ Razglednice: <span id="dash-skupno-razglednice" class="font-black text-main-teal">0</span></div>
+                <div>🧲 Magneti: <span id="dash-skupno-magneti" class="font-black text-main-teal">0</span></div>
             </div>
         </div>
 
@@ -110,7 +138,7 @@
         <h2 class="text-3xl font-black mb-6 uppercase text-red-600 italic tracking-tighter">Stroški in Nabava</h2>
         
         <select id="input-strosek-kategorija" onchange="toggleStrosekType()" class="w-full p-4 bg-white rounded-xl mb-4 font-bold border-2 border-red-100 shadow-sm italic outline-none text-slate-700">
-            <option value="Nakup nalepk">Nakup nalepk (posodobi zalogo)</option>
+            <option value="Nakup nalepk">Nakup izdelkov (posodobi zalogo)</option>
             <option value="Drugi stroški">Drugi stroški (brez spremembe zaloge)</option>
         </select>
         
@@ -122,20 +150,34 @@
             <p class="text-[10px] uppercase font-bold mt-2 opacity-70">Skupni Znesek Stroška v €</p>
         </div>
 
-        <!-- SEZNAM NALEPK ZA DODAJANJE V ZALOGO -->
+        <!-- SEZNAM IZDELKOV ZA DODAJANJE V ZALOGO -->
         <div id="strosek-nalepke-box" class="mb-6">
-            <p class="text-xs font-black uppercase text-red-600 mb-2 italic">Kupljene nalepke (se prištejejo v zalogo):</p>
+            <label class="text-[10px] font-black uppercase text-slate-400 block mb-2">Izberi vrsto kupljenega produkta:</label>
+            <div class="grid grid-cols-3 gap-2 mb-4">
+                <button type="button" id="btn-nabava-prod-Nalepke" onclick="setProductType('nabava', 'Nalepke')" class="py-2.5 rounded-xl font-black text-[10px] uppercase bg-red-600 text-white shadow-sm">🏷️ Nalepke</button>
+                <button type="button" id="btn-nabava-prod-Razglednice" onclick="setProductType('nabava', 'Razglednice')" class="py-2.5 rounded-xl font-black text-[10px] uppercase bg-white text-slate-600 border">✉️ Razglednice</button>
+                <button type="button" id="btn-nabava-prod-Magneti" onclick="setProductType('nabava', 'Magneti')" class="py-2.5 rounded-xl font-black text-[10px] uppercase bg-white text-slate-600 border">🧲 Magneti</button>
+            </div>
+            <p class="text-xs font-black uppercase text-red-600 mb-2 italic">Kupljene količine (<span id="strosek-prod-label">Nalepke</span> - prištejejo se v zalogo):</p>
             <div id="strosek-nalepke-list" class="space-y-1"></div>
         </div>
 
         <button id="btn-save-strosek" class="w-full bg-red-500 text-white py-5 rounded-2xl font-black text-lg shadow-lg uppercase italic tracking-widest hover:bg-red-600 active:scale-95 transition-all">Zabeleži strošek</button>
     </div>
 
-    <!-- ZALOGA (Glavno skladišče + Zaloga v trgovinah) -->
+    <!-- ZALOGA (Glavno skladišče + Zaloga v trgovinah + Izbira produkta) -->
     <div id="zaloga" class="screen p-6 max-w-md mx-auto pb-32">
         <button onclick="showScreen('main-menu')" class="mb-4 text-main-teal font-bold uppercase text-[10px] bg-white px-3 py-1 rounded-full shadow-sm">← Nazaj</button>
         <h2 class="text-3xl font-black mb-4 uppercase text-amber-700 italic tracking-tighter">Zaloga</h2>
         
+        <!-- Izbira produkta -->
+        <div class="grid grid-cols-3 gap-2 mb-3">
+            <button id="btn-zaloga-prod-Nalepke" onclick="setProductType('zaloga', 'Nalepke')" class="py-2.5 rounded-xl font-black text-[10px] uppercase bg-main-teal text-white shadow-sm">🏷️ Nalepke</button>
+            <button id="btn-zaloga-prod-Razglednice" onclick="setProductType('zaloga', 'Razglednice')" class="py-2.5 rounded-xl font-black text-[10px] uppercase bg-white text-slate-600 border">✉️ Razglednice</button>
+            <button id="btn-zaloga-prod-Magneti" onclick="setProductType('zaloga', 'Magneti')" class="py-2.5 rounded-xl font-black text-[10px] uppercase bg-white text-slate-600 border">🧲 Magneti</button>
+        </div>
+
+        <!-- Izbira pogleda: Skladišče ali Trgovine -->
         <div class="flex gap-2 mb-6">
             <button id="tab-zaloga-glavna" onclick="switchZalogaTab('glavna')" class="flex-1 py-3 rounded-xl border font-black text-xs uppercase transition-all bg-amber-600 text-white border-amber-600 shadow-md">Glavno skladišče</button>
             <button id="tab-zaloga-trgovine" onclick="switchZalogaTab('trgovine')" class="flex-1 py-3 rounded-xl border font-black text-xs uppercase transition-all bg-white text-slate-600 border-slate-200 shadow-sm">V trgovinah</button>
@@ -146,7 +188,7 @@
         </div>
 
         <div id="zaloga-trgovine-wrapper" class="hidden">
-            <p class="text-[10px] text-slate-500 mb-3 italic">Izračun trenutne zaloge pri strankah (Vse poslane nalepke minus vse prodane nalepke):</p>
+            <p class="text-[10px] text-slate-500 mb-3 italic">Izračun trenutne zaloge pri strankah za izbrani produkt (Poslano minus Prodano):</p>
             <div id="zaloga-trgovine-container" class="space-y-2"></div>
         </div>
     </div>
@@ -173,7 +215,6 @@
             <button id="tab-vse" onclick="filterUradno('Vse')" class="px-3 py-3 rounded-xl border font-black text-xs uppercase transition-all bg-white text-slate-600 border-slate-200 shadow-sm">Vse</button>
         </div>
 
-        <!-- Prikaz aktivnega filtra trgovine (ko pridemo iz Kontaktov) -->
         <div id="uradno-active-filter" class="hidden bg-indigo-50 border border-indigo-200 text-indigo-800 px-3 py-2 rounded-xl mb-4 flex justify-between items-center text-xs font-bold italic">
             <span id="uradno-filter-text">Filter: </span>
             <button onclick="filterUradno('Vse', null)" class="text-indigo-600 font-black uppercase text-[10px] bg-white px-2 py-1 rounded border">Pokaži vse ✕</button>
@@ -198,16 +239,24 @@
     <!-- STATISTIKA -->
     <div id="stats" class="screen p-6 max-w-md mx-auto pb-32">
         <button onclick="showScreen('main-menu')" class="mb-4 text-main-teal font-bold uppercase text-[10px] bg-white px-3 py-1 rounded-full shadow-sm">← Nazaj</button>
-        <h2 class="text-3xl font-black mb-6 uppercase text-main-teal italic tracking-tighter">Analitika</h2>
+        <h2 class="text-3xl font-black mb-4 uppercase text-main-teal italic tracking-tighter">Analitika</h2>
         
-        <h3 class="font-black text-yellow-600 uppercase text-[11px] mb-2 pl-2 border-l-4 border-yellow-500">Trgovine (Klikni za prodane in poslane nalepke)</h3>
+        <!-- Filter po produktu v Analitiki -->
+        <div class="grid grid-cols-4 gap-1.5 mb-6">
+            <button id="btn-stats-prod-Vse" onclick="setProductType('stats', 'Vse')" class="py-2 rounded-xl font-black text-[10px] uppercase bg-main-teal text-white shadow-sm">Vse</button>
+            <button id="btn-stats-prod-Nalepke" onclick="setProductType('stats', 'Nalepke')" class="py-2 rounded-xl font-black text-[10px] uppercase bg-white text-slate-600 border">🏷️ Nalepke</button>
+            <button id="btn-stats-prod-Razglednice" onclick="setProductType('stats', 'Razglednice')" class="py-2 rounded-xl font-black text-[10px] uppercase bg-white text-slate-600 border">✉️ Razgled.</button>
+            <button id="btn-stats-prod-Magneti" onclick="setProductType('stats', 'Magneti')" class="py-2 rounded-xl font-black text-[10px] uppercase bg-white text-slate-600 border">🧲 Magneti</button>
+        </div>
+
+        <h3 class="font-black text-yellow-600 uppercase text-[11px] mb-2 pl-2 border-l-4 border-yellow-500">Trgovine (Klikni za podrobnosti)</h3>
         <div id="stats-trgovine-list" class="space-y-2.5 mb-8"></div>
 
-        <h3 class="font-black text-main-teal uppercase text-[11px] mb-2 pl-2 border-l-4 border-main-teal">Skupno poslane nalepke (Celotna zgodovina)</h3>
+        <h3 class="font-black text-main-teal uppercase text-[11px] mb-2 pl-2 border-l-4 border-main-teal">Skupno poslani dizajni (Celotna zgodovina)</h3>
         <p class="text-[9px] text-slate-400 mb-3 italic">*Vključuje vse vnose iz zgodovine od prvega do zadnjega.</p>
         <div id="stats-nalepke-top" class="space-y-3 mb-3"></div>
         <div id="stats-nalepke-rest" class="space-y-2 hidden mb-3"></div>
-        <button onclick="toggleVisibility('stats-nalepke-rest', this)" class="w-full text-center bg-white text-main-teal py-2.5 rounded-xl text-[10px] font-bold uppercase tracking-wider mb-8 border border-main-teal shadow-sm">Prikaži vse nalepke ↓</button>
+        <button onclick="toggleVisibility('stats-nalepke-rest', this)" class="w-full text-center bg-white text-main-teal py-2.5 rounded-xl text-[10px] font-bold uppercase tracking-wider mb-8 border border-main-teal shadow-sm">Prikaži vse dizajne ↓</button>
     </div>
 
     <!-- ADMIN -->
@@ -221,16 +270,23 @@
 
         <details class="mb-4 bg-white rounded-xl shadow-sm border border-slate-200">
             <summary class="font-black text-yellow-600 uppercase text-xs p-4 border-l-4 border-yellow-500 rounded-l-lg outline-none flex justify-between items-center">
-                <span>Nastavitev cenika</span><span>▼</span>
+                <span>Nastavitev cenika (Nalepke / Razglednice / Magneti)</span><span>▼</span>
             </summary>
-            <div id="admin-cenik-list" class="p-4 border-t italic text-xs"></div>
+            <div id="admin-cenik-list" class="p-3 border-t italic text-xs"></div>
         </details>
 
         <details class="mb-4 bg-white rounded-xl shadow-sm border border-slate-200">
             <summary class="font-black text-main-teal uppercase text-xs p-4 border-l-4 border-main-teal rounded-l-lg outline-none flex justify-between items-center">
                 <span>Popravek stanja zaloge</span><span>▼</span>
             </summary>
-            <div id="admin-zaloga-edit" class="p-4 border-t"></div>
+            <div class="p-4 border-t">
+                <div class="grid grid-cols-3 gap-2 mb-4">
+                    <button id="btn-admin-prod-Nalepke" onclick="setProductType('admin', 'Nalepke')" class="py-2 rounded-xl font-black text-[10px] uppercase bg-main-teal text-white shadow-sm">🏷️ Nalepke</button>
+                    <button id="btn-admin-prod-Razglednice" onclick="setProductType('admin', 'Razglednice')" class="py-2 rounded-xl font-black text-[10px] uppercase bg-white text-slate-600 border">✉️ Razglednice</button>
+                    <button id="btn-admin-prod-Magneti" onclick="setProductType('admin', 'Magneti')" class="py-2 rounded-xl font-black text-[10px] uppercase bg-white text-slate-600 border">🧲 Magneti</button>
+                </div>
+                <div id="admin-zaloga-edit"></div>
+            </div>
         </details>
 
         <details class="mb-4 bg-white rounded-xl shadow-sm border border-slate-200">
@@ -247,7 +303,16 @@
     <!-- PRODAJA -->
     <div id="prodaja" class="screen p-6 max-w-md mx-auto pb-32">
         <button onclick="showScreen('main-menu')" class="mb-4 text-main-teal font-bold uppercase text-[10px] bg-white px-3 py-1 rounded-full shadow-sm">← Nazaj</button>
-        <h2 class="text-3xl font-black mb-6 uppercase text-yellow-600 italic tracking-tighter">Nova Prodaja</h2>
+        <h2 class="text-3xl font-black mb-4 uppercase text-yellow-600 italic tracking-tighter">Nova Prodaja</h2>
+        
+        <!-- Izbira produkta pri prodaji -->
+        <label class="text-[10px] font-black uppercase text-slate-400 block mb-1.5">Izberi produkt:</label>
+        <div class="grid grid-cols-3 gap-2 mb-4">
+            <button type="button" id="btn-prodaja-prod-Nalepke" onclick="setProductType('prodaja', 'Nalepke')" class="py-3 rounded-xl font-black text-[10px] uppercase bg-yellow-500 text-white shadow-sm">🏷️ Nalepke</button>
+            <button type="button" id="btn-prodaja-prod-Razglednice" onclick="setProductType('prodaja', 'Razglednice')" class="py-3 rounded-xl font-black text-[10px] uppercase bg-white text-slate-600 border">✉️ Razglednice</button>
+            <button type="button" id="btn-prodaja-prod-Magneti" onclick="setProductType('prodaja', 'Magneti')" class="py-3 rounded-xl font-black text-[10px] uppercase bg-white text-slate-600 border">🧲 Magneti</button>
+        </div>
+
         <select id="sel-trg-pro" class="w-full p-4 bg-white rounded-xl mb-4 font-bold border-2 border-yellow-100 shadow-sm italic outline-none"></select>
         <input type="date" id="input-prodaja-datum" class="w-full p-4 bg-white rounded-xl mb-4 font-bold border-2 border-yellow-100 shadow-sm italic outline-none text-slate-600">
         
@@ -255,16 +320,16 @@
         <div class="flex items-center gap-3 mb-6 bg-white p-3.5 rounded-xl border border-yellow-100 shadow-sm justify-center">
             <span class="text-[10px] font-black uppercase text-yellow-600" id="lbl-hitri">Samo skupno število</span>
             <label class="switch"><input type="checkbox" id="toggle-prodaja-nacin" onchange="toggleProdajaNacin()"><span class="slider"></span></label>
-            <span class="text-[10px] font-bold uppercase text-slate-400" id="lbl-podrobno">Točno po nalepkah</span>
+            <span class="text-[10px] font-bold uppercase text-slate-400" id="lbl-podrobno">Točno po dizajnih</span>
         </div>
 
         <div id="prodaja-hitri" class="bg-gradient-to-br from-yellow-50 to-white p-8 rounded-[30px] border-2 border-yellow-200 mb-8 text-center text-yellow-600 italic shadow-inner">
             <input type="number" id="input-prodaja-total" class="text-7xl font-black w-full text-center outline-none bg-transparent" placeholder="0">
-            <p class="text-[10px] uppercase font-bold mt-2 opacity-70">Skupaj prodanih kosov</p>
+            <p class="text-[10px] uppercase font-bold mt-2 opacity-70">Skupaj prodanih kosov (<span id="prodaja-hitri-prod-label">Nalepke</span>)</p>
         </div>
 
         <div id="prodaja-podrobno" class="hidden mb-8">
-            <p class="text-[10px] text-slate-500 mb-2 italic font-bold">Vpiši prodane količine po posameznih dizajnih:</p>
+            <p class="text-[10px] text-slate-500 mb-2 italic font-bold">Vpiši prodane količine po posameznih dizajnih (<span id="prodaja-podrobno-prod-label">Nalepke</span>):</p>
             <div id="prodaja-artikli-list" class="space-y-1"></div>
         </div>
 
@@ -274,9 +339,19 @@
     <!-- POŠILJKA -->
     <div id="posiljka" class="screen p-6 max-w-md mx-auto">
         <button onclick="showScreen('main-menu')" class="mb-4 text-main-teal font-bold uppercase text-[10px] bg-white px-3 py-1 rounded-full shadow-sm">← Nazaj</button>
-        <h2 class="text-3xl font-black mb-6 uppercase text-main-teal italic tracking-tighter">Nova Pošiljka</h2>
+        <h2 class="text-3xl font-black mb-4 uppercase text-main-teal italic tracking-tighter">Nova Pošiljka</h2>
+        
+        <!-- Izbira produkta pri pošiljki -->
+        <label class="text-[10px] font-black uppercase text-slate-400 block mb-1.5">Izberi produkt za pošiljanje:</label>
+        <div class="grid grid-cols-3 gap-2 mb-4">
+            <button type="button" id="btn-posiljka-prod-Nalepke" onclick="setProductType('posiljka', 'Nalepke')" class="py-3 rounded-xl font-black text-[10px] uppercase bg-main-teal text-white shadow-sm">🏷️ Nalepke</button>
+            <button type="button" id="btn-posiljka-prod-Razglednice" onclick="setProductType('posiljka', 'Razglednice')" class="py-3 rounded-xl font-black text-[10px] uppercase bg-white text-slate-600 border">✉️ Razglednice</button>
+            <button type="button" id="btn-posiljka-prod-Magneti" onclick="setProductType('posiljka', 'Magneti')" class="py-3 rounded-xl font-black text-[10px] uppercase bg-white text-slate-600 border">🧲 Magneti</button>
+        </div>
+
         <select id="sel-trg-pos" class="w-full p-4 bg-white rounded-xl mb-4 font-bold border border-light-teal shadow-sm italic outline-none"></select>
         <input type="date" id="input-posiljka-datum" class="w-full p-4 bg-white rounded-xl mb-4 font-bold border border-light-teal shadow-sm italic outline-none text-slate-600">
+        <p class="text-[10px] font-black uppercase text-main-teal mb-1 italic">Seznam za pošiljanje (<span id="posiljka-prod-label">Nalepke</span>):</p>
         <div id="posiljka-list" class="mb-28"></div>
         <div class="fixed bottom-0 left-0 right-0 p-4 bg-white/95 border-t z-50 backdrop-blur-md">
             <button id="btn-save-pos" class="w-full max-w-md mx-auto block bg-main-teal text-white py-5 rounded-2xl font-black text-lg shadow-lg uppercase italic tracking-widest hover:bg-[#356160] active:scale-95 transition-all">Pošlji zalogo</button>
@@ -294,6 +369,14 @@
             
             <div class="space-y-3 text-sm font-bold italic text-slate-600 overflow-y-auto pr-2 pb-2 flex-1">
                 <div><label class="text-[10px] uppercase text-slate-400">Datum</label><input type="date" id="edit-datum" class="w-full p-2 border rounded-lg bg-slate-50 outline-none"></div>
+                <div>
+                    <label class="text-[10px] uppercase text-slate-400">Produkt</label>
+                    <select id="edit-produkt" class="w-full p-2 border rounded-lg bg-slate-50 outline-none font-black text-main-teal">
+                        <option value="Nalepke">🏷️ Nalepke</option>
+                        <option value="Razglednice">✉️ Razglednice</option>
+                        <option value="Magneti">🧲 Magneti</option>
+                    </select>
+                </div>
                 <div id="edit-trg-container"><label class="text-[10px] uppercase text-slate-400">Trgovina</label><select id="edit-trg" class="w-full p-2 border rounded-lg bg-slate-50 outline-none"></select></div>
                 <div id="edit-opis-container" class="hidden"><label class="text-[10px] uppercase text-slate-400">Opis stroška</label><input type="text" id="edit-opis" class="w-full p-2 border rounded-lg bg-slate-50 outline-none"></div>
                 
@@ -307,7 +390,7 @@
                         <span id="edit-old-kol-info" class="text-amber-800 font-bold">Prvotno vpisano: 0 kos</span>
                         <span id="edit-live-sum" class="text-main-teal font-black">Nov seštevek: 0 kos</span>
                     </div>
-                    <label class="text-[10px] uppercase text-slate-400 mb-2 block">Posamezne nalepke:</label>
+                    <label class="text-[10px] uppercase text-slate-400 mb-2 block">Posamezni dizajni:</label>
                     <div id="edit-artikli-list" class="space-y-1"></div>
                 </div>
             </div>
@@ -358,11 +441,10 @@
                     <p id="kv-podatki" class="font-bold text-slate-700 whitespace-pre-line">-</p>
                 </div>
                 <div class="bg-slate-50 p-3 rounded-xl border">
-                    <p class="text-[9px] font-black uppercase text-slate-400 mb-1">Naslov za dostavo nalepk</p>
+                    <p class="text-[9px] font-black uppercase text-slate-400 mb-1">Naslov za dostavo</p>
                     <p id="kv-naslov" class="font-bold text-slate-700">-</p>
                 </div>
                 
-                <!-- Direktne povezave za komunikacijo -->
                 <div class="grid grid-cols-1 gap-2 pt-1">
                     <a id="kv-telefon-wrap" href="#" class="flex items-center justify-between bg-green-50 border border-green-200 p-3 rounded-xl text-green-800 font-bold">
                         <span>📞 Telefon: <strong id="kv-telefon"></strong></span>
@@ -403,7 +485,7 @@
                 <div><label class="text-[10px] uppercase text-slate-400">Ime in Priimek</label><input type="text" id="k-ime" class="w-full p-3 border rounded-lg bg-slate-50"></div>
                 <div><label class="text-[10px] uppercase text-slate-400">Podjetje / Trgovina</label><select id="k-firma" class="w-full p-3 border rounded-lg bg-slate-50"></select></div>
                 <div><label class="text-[10px] uppercase text-slate-400">Podatki podjetja (DŠ, TRR, polni naziv...)</label><textarea id="k-podatki" class="w-full p-3 border rounded-lg bg-slate-50 h-20"></textarea></div>
-                <div><label class="text-[10px] uppercase text-slate-400">Naslov dostave nalepk</label><input type="text" id="k-naslov" class="w-full p-3 border rounded-lg bg-slate-50"></div>
+                <div><label class="text-[10px] uppercase text-slate-400">Naslov dostave</label><input type="text" id="k-naslov" class="w-full p-3 border rounded-lg bg-slate-50"></div>
                 <div><label class="text-[10px] uppercase text-slate-400">Telefonska številka</label><input type="text" id="k-telefon" class="w-full p-3 border rounded-lg bg-slate-50"></div>
                 <div><label class="text-[10px] uppercase text-slate-400">Email naslov</label><input type="email" id="k-email" class="w-full p-3 border rounded-lg bg-slate-50"></div>
                 <div><label class="text-[10px] uppercase text-slate-400">WhatsApp številka (npr. 38640123456)</label><input type="text" id="k-whatsapp" class="w-full p-3 border rounded-lg bg-slate-50"></div>
@@ -460,8 +542,8 @@
             <p id="ts-stock-info" class="text-[10px] font-bold text-slate-400 uppercase mb-3 pb-2 border-b"></p>
             
             <div class="flex gap-2 mb-3">
-                <button id="ts-tab-prodano" onclick="switchTrgovinaModalTab('prodano')" class="flex-1 py-2 rounded-lg font-black text-[10px] uppercase bg-yellow-500 text-white">Prodane nalepke</button>
-                <button id="ts-tab-poslano" onclick="switchTrgovinaModalTab('poslano')" class="flex-1 py-2 rounded-lg font-black text-[10px] uppercase bg-slate-100 text-slate-600">Poslane nalepke</button>
+                <button id="ts-tab-prodano" onclick="switchTrgovinaModalTab('prodano')" class="flex-1 py-2 rounded-lg font-black text-[10px] uppercase bg-yellow-500 text-white">Prodani dizajni</button>
+                <button id="ts-tab-poslano" onclick="switchTrgovinaModalTab('poslano')" class="flex-1 py-2 rounded-lg font-black text-[10px] uppercase bg-slate-100 text-slate-600">Poslani dizajni</button>
             </div>
 
             <div class="overflow-y-auto flex-1 space-y-1.5 pr-1" id="ts-list"></div>
@@ -487,17 +569,31 @@
         const db = getFirestore(app);
         const storage = getStorage(app);
 
+        // VSE KATEGORIJE IN VSI NOVI DIZAJNI (vključno z božično kategorijo Zima)
         const kategorije = {
-            "Ljubljana": ["Ljubljana", "Zmajski most"],
+            "Ljubljana": [
+                "Ljubljana", "Ljubljanski grad", "Zmaj", "Zmajski most"
+            ],
             "Gorenjska": [
                 "Beljski vintgar", "Bled", "Bled srček", "Blejski grad", 
                 "Bohinj", "Bovec", "Gorenjska", "Kranjska Gora", 
-                "Kremšnita", "Planica NC", "Planica WR", "Planica poletje", 
-                "Pletna", "Slovenija", "Srce", "Triglav"
+                "Kremšnita", "Planica - poletje", "Planica NC", "Planica WR", 
+                "Pletna", "Slovenija", "Slovenija - zastava", "Soča", "Srce", "Triglav"
             ],
-            "Postojna": ["Postojnska jama", "Predjamski grad"],
-            "Obala": ["Piran", "Grb Piran", "Tartini", "Portorož"],
-            "Srbija": ["Srbija", "Novi Sad", "Okno", "Fraklič", "Šajkača", "Petrovaradinski sat", "Opanak", "Lepenski vir"]
+            "Postojna": [
+                "Postojnska jama", "Predjamski grad"
+            ],
+            "Obala": [
+                "Grb Piran", "Piran", "Portorož", "Tartini"
+            ],
+            "Srbija": [
+                "Fraklič", "Lepenski vir", "Novi Sad", "Okno", 
+                "Opanak", "Petrovaradinski sat", "Srbija", "Srbija - zastava", "Šajkača"
+            ],
+            "Zima": [
+                "KG vasica", "Kongresni trg - zima", "Ljubljanica - zima", 
+                "Novi Sad - zima", "Pletna - zima", "Zmaj - zima"
+            ]
         };
 
         let trgovine = [
@@ -507,6 +603,16 @@
             "Vanja Portorož", "LUNA Izdelki", "Drugo"
         ];
 
+        // Izbrani produkti po posameznih zaslonih
+        window.selectedProduct = {
+            posiljka: 'Nalepke',
+            prodaja: 'Nalepke',
+            nabava: 'Nalepke',
+            zaloga: 'Nalepke',
+            stats: 'Vse',
+            admin: 'Nalepke'
+        };
+
         window.allTransactions = [];
         window.allContacts = [];
         window.placilaFilter = 'vsa';
@@ -514,6 +620,82 @@
         window.currentUradnoFirma = null;
         window.activeStoreModalName = '';
         window.activeStoreModalTab = 'prodano';
+
+        // Ključ za zalogo: Nalepke ohranijo originalno ime (npr. "Bled"), Razglednice in Magneti dobijo predpono
+        function getStockKey(design, produkt = 'Nalepke') {
+            if (!produkt || produkt === 'Nalepke') return design;
+            return `${produkt}__${design}`;
+        }
+
+        // Ključ za cenik: Nalepke ohranijo ime trgovine, Razglednice in Magneti imajo ločeno polje
+        function getPriceKey(trgovina, produkt = 'Nalepke') {
+            if (!produkt || produkt === 'Nalepke') return trgovina;
+            return `${trgovina}__${produkt}`;
+        }
+
+        function getCategoryHeaderClass(kat) {
+            return kat === "Zima" ? "category-header-zima" : "category-header";
+        }
+
+        function getCategoryDisplayTitle(kat) {
+            return kat === "Zima" ? "🎄 Zima (Zimska kolekcija) ❄️" : kat;
+        }
+
+        // Preklop vrste produkta (Nalepke / Razglednice / Magneti)
+        window.setProductType = (context, prod) => {
+            window.selectedProduct[context] = prod;
+
+            if (context === 'posiljka') {
+                ['Nalepke', 'Razglednice', 'Magneti'].forEach(p => {
+                    const btn = document.getElementById(`btn-posiljka-prod-${p}`);
+                    if (btn) btn.className = (p === prod)
+                        ? "py-3 rounded-xl font-black text-[10px] uppercase bg-main-teal text-white shadow-sm"
+                        : "py-3 rounded-xl font-black text-[10px] uppercase bg-white text-slate-600 border";
+                });
+                document.getElementById('posiljka-prod-label').innerText = prod;
+            } else if (context === 'prodaja') {
+                ['Nalepke', 'Razglednice', 'Magneti'].forEach(p => {
+                    const btn = document.getElementById(`btn-prodaja-prod-${p}`);
+                    if (btn) btn.className = (p === prod)
+                        ? "py-3 rounded-xl font-black text-[10px] uppercase bg-yellow-500 text-white shadow-sm"
+                        : "py-3 rounded-xl font-black text-[10px] uppercase bg-white text-slate-600 border";
+                });
+                document.getElementById('prodaja-hitri-prod-label').innerText = prod;
+                document.getElementById('prodaja-podrobno-prod-label').innerText = prod;
+            } else if (context === 'nabava') {
+                ['Nalepke', 'Razglednice', 'Magneti'].forEach(p => {
+                    const btn = document.getElementById(`btn-nabava-prod-${p}`);
+                    if (btn) btn.className = (p === prod)
+                        ? "py-2.5 rounded-xl font-black text-[10px] uppercase bg-red-600 text-white shadow-sm"
+                        : "py-2.5 rounded-xl font-black text-[10px] uppercase bg-white text-slate-600 border";
+                });
+                document.getElementById('strosek-prod-label').innerText = prod;
+            } else if (context === 'zaloga') {
+                ['Nalepke', 'Razglednice', 'Magneti'].forEach(p => {
+                    const btn = document.getElementById(`btn-zaloga-prod-${p}`);
+                    if (btn) btn.className = (p === prod)
+                        ? "py-2.5 rounded-xl font-black text-[10px] uppercase bg-main-teal text-white shadow-sm"
+                        : "py-2.5 rounded-xl font-black text-[10px] uppercase bg-white text-slate-600 border";
+                });
+                naloziZalogo();
+            } else if (context === 'stats') {
+                ['Vse', 'Nalepke', 'Razglednice', 'Magneti'].forEach(p => {
+                    const btn = document.getElementById(`btn-stats-prod-${p}`);
+                    if (btn) btn.className = (p === prod)
+                        ? "py-2 rounded-xl font-black text-[10px] uppercase bg-main-teal text-white shadow-sm"
+                        : "py-2 rounded-xl font-black text-[10px] uppercase bg-white text-slate-600 border";
+                });
+                naloziStats();
+            } else if (context === 'admin') {
+                ['Nalepke', 'Razglednice', 'Magneti'].forEach(p => {
+                    const btn = document.getElementById(`btn-admin-prod-${p}`);
+                    if (btn) btn.className = (p === prod)
+                        ? "py-2 rounded-xl font-black text-[10px] uppercase bg-main-teal text-white shadow-sm"
+                        : "py-2 rounded-xl font-black text-[10px] uppercase bg-white text-slate-600 border";
+                });
+                naloziAdminZalogo();
+            }
+        };
 
         // Varno branje datuma iz Firestore zapisa
         function parseDatum(d) {
@@ -541,10 +723,10 @@
         }
         populateTrgovineDropdowns();
 
-        // V ozadju preveri še nastavitve/cenik, če si dodal kakšno novo trgovino direktno v Firebase
+        // Preveri še nastavitve/cenik za morebitne nove trgovine (brez ključev z "__")
         getDoc(doc(db, "nastavitve", "cenik")).then(snap => {
             if (snap.exists()) {
-                const dbStores = Object.keys(snap.data());
+                const dbStores = Object.keys(snap.data()).filter(k => !k.includes("__"));
                 let changed = false;
                 dbStores.forEach(s => {
                     if (!trgovine.includes(s)) {
@@ -556,19 +738,21 @@
             }
         }).catch(err => console.warn("Cenik ni bil prebran ob zagonu:", err));
 
-        // Generiranje seznamov nalepk za Pošiljko, Nabavo in Podrobno Prodajo
+        // Generiranje seznamov dizajnov za Pošiljko, Nabavo in Podrobno Prodajo
         const pList = document.getElementById('posiljka-list');
         const sList = document.getElementById('strosek-nalepke-list');
         const prList = document.getElementById('prodaja-artikli-list');
         
         Object.entries(kategorije).forEach(([kat, items]) => {
-            const katHtml = `<div class="category-header">${kat}</div>`;
+            const hClass = getCategoryHeaderClass(kat);
+            const hTitle = getCategoryDisplayTitle(kat);
+            const katHtml = `<div class="${hClass}">${hTitle}</div>`;
             if (pList) pList.innerHTML += katHtml;
             if (sList) sList.innerHTML += katHtml;
             if (prList) prList.innerHTML += katHtml;
 
             items.sort().forEach(n => {
-                const itemRow = `<div class="flex items-center justify-between bg-white p-3 border-b italic"><span class="font-bold text-[10px] uppercase text-slate-500">${n}</span><input type="number" data-name="${n}" class="w-16 p-2 bg-slate-50 rounded text-center font-black border border-slate-200 outline-none" placeholder="0"></div>`;
+                const itemRow = `<div class="flex items-center justify-between bg-white p-3 border-b italic"><span class="font-bold text-[10px] uppercase text-slate-600">${n}</span><input type="number" data-name="${n}" class="w-16 p-2 bg-slate-50 rounded text-center font-black border border-slate-200 outline-none" placeholder="0"></div>`;
                 if (pList) pList.innerHTML += itemRow;
                 if (sList) sList.innerHTML += itemRow;
                 if (prList) prList.innerHTML += itemRow;
@@ -595,7 +779,7 @@
         window.toggleVisibility = (id, btn) => {
             const el = document.getElementById(id);
             el.classList.toggle('hidden');
-            btn.innerText = el.classList.contains('hidden') ? "Prikaži vse nalepke ↓" : "Skrij ↑";
+            btn.innerText = el.classList.contains('hidden') ? "Prikaži vse dizajne ↓" : "Skrij ↑";
         };
 
         // POSODABLJANJE FINANČNEGA STATUSA IN METRIK PRODAJE V REALNEM ČASU
@@ -613,6 +797,7 @@
 
             let prodanoPrejsnjiMesec = 0;
             let prodanoSkupno = 0;
+            let skupnoPoProduktu = { Nalepke: 0, Razglednice: 0, Magneti: 0 };
 
             snap.forEach(d => {
                 const data = d.data();
@@ -627,7 +812,9 @@
                     }
 
                     const kos = data.kolicina || 0;
+                    const prod = data.produkt || "Nalepke";
                     prodanoSkupno += kos;
+                    skupnoPoProduktu[prod] = (skupnoPoProduktu[prod] || 0) + kos;
 
                     const tDate = parseDatum(data.datum);
                     if (tDate && tDate >= startOfPrevMonth && tDate < startOfCurrentMonth) {
@@ -651,6 +838,9 @@
             
             document.getElementById('dash-prodano-prejsnji-mesec').innerText = `${prodanoPrejsnjiMesec} kos`;
             document.getElementById('dash-prodano-skupno').innerText = `${prodanoSkupno} kos`;
+            document.getElementById('dash-skupno-nalepke').innerText = skupnoPoProduktu.Nalepke || 0;
+            document.getElementById('dash-skupno-razglednice').innerText = skupnoPoProduktu.Razglednice || 0;
+            document.getElementById('dash-skupno-magneti').innerText = skupnoPoProduktu.Magneti || 0;
 
             if (document.getElementById('placila').classList.contains('active')) naloziPlacila();
             if (document.getElementById('stats').classList.contains('active')) naloziStats();
@@ -668,6 +858,7 @@
 
         document.getElementById('btn-save-pro').onclick = async () => {
             const trg = document.getElementById('sel-trg-pro').value;
+            const produkt = window.selectedProduct.prodaja || 'Nalepke';
             let d = document.getElementById('input-prodaja-datum').value;
             const datumVnosa = d ? new Date(d) : new Date();
             const isPodrobno = document.getElementById('toggle-prodaja-nacin').checked;
@@ -688,13 +879,16 @@
                 kol = parseInt(document.getElementById('input-prodaja-total').value) || 0;
             }
 
-            if (kol <= 0) return alert("Vpiši število prodanih nalepk!");
+            if (kol <= 0) return alert("Vpiši število prodanih kosov!");
 
             const set = await getDoc(doc(db, "nastavitve", "cenik"));
-            const cena = set.exists() && set.data()[trg] !== undefined ? set.data()[trg] : 1;
+            const cData = set.exists() ? set.data() : {};
+            const pKey = getPriceKey(trg, produkt);
+            const cena = cData[pKey] !== undefined ? cData[pKey] : (cData[trg] !== undefined ? cData[trg] : 1);
             
             const docData = {
                 tip: "Prodaja",
+                produkt: produkt,
                 trgovina: trg,
                 znesek: kol * cena,
                 kolicina: kol,
@@ -712,6 +906,7 @@
 
         // ==================== POŠILJKA ====================
         document.getElementById('btn-save-pos').onclick = async () => {
+            const produkt = window.selectedProduct.posiljka || 'Nalepke';
             const updates = {};
             const artikli = {};
             let total = 0;
@@ -721,17 +916,19 @@
             document.querySelectorAll('#posiljka-list input').forEach(inp => {
                 const v = parseInt(inp.value) || 0; 
                 if (v > 0) {
-                    updates[inp.dataset.name] = increment(-v);
+                    const sKey = getStockKey(inp.dataset.name, produkt);
+                    updates[sKey] = increment(-v);
                     artikli[inp.dataset.name] = v;
                     total += v;
                 }
             });
 
-            if (total <= 0) return alert("Izberi vsaj eno nalepko za pošiljko!");
+            if (total <= 0) return alert("Izberi vsaj en artikel za pošiljko!");
 
             await setDoc(doc(db, "zaloga", "glavno_skladisce"), updates, { merge: true });
             await addDoc(collection(db, "transakcije"), {
                 tip: "Posiljka",
+                produkt: produkt,
                 trgovina: document.getElementById('sel-trg-pos').value,
                 kolicina: total,
                 artikli: artikli,
@@ -754,6 +951,7 @@
             if (isNaN(znesek) || znesek < 0) return alert("Vpiši znesek stroška!");
             
             const kategorija = document.getElementById('input-strosek-kategorija').value;
+            const produkt = window.selectedProduct.nabava || 'Nalepke';
             const opis = document.getElementById('input-strosek-opis').value;
             let d = document.getElementById('input-strosek-datum').value;
             const datumVnosa = d ? new Date(d) : new Date();
@@ -766,7 +964,8 @@
                 document.querySelectorAll('#strosek-nalepke-list input').forEach(inp => {
                     const v = parseInt(inp.value) || 0;
                     if (v > 0) {
-                        updates[inp.dataset.name] = increment(v);
+                        const sKey = getStockKey(inp.dataset.name, produkt);
+                        updates[sKey] = increment(v);
                         artikli[inp.dataset.name] = v;
                         totalKos += v;
                     }
@@ -779,8 +978,9 @@
 
             await addDoc(collection(db, "transakcije"), {
                 tip: "Nabava",
+                produkt: kategorija === "Nakup nalepk" ? produkt : null,
                 kategorija: kategorija,
-                opis: opis || kategorija,
+                opis: opis || (kategorija === "Nakup nalepk" ? `Nakup (${produkt})` : kategorija),
                 strosek: znesek,
                 artikli: Object.keys(artikli).length > 0 ? artikli : null,
                 kolicina: totalKos,
@@ -810,14 +1010,18 @@
         };
 
         async function naloziZalogo() {
+            const produkt = window.selectedProduct.zaloga || 'Nalepke';
             const snap = await getDoc(doc(db, "zaloga", "glavno_skladisce"));
             const data = snap.exists() ? snap.data() : {};
             const container = document.getElementById('zaloga-container');
             container.innerHTML = "";
             Object.entries(kategorije).forEach(([kat, items]) => {
-                let html = `<div class="bg-white rounded-xl shadow-sm overflow-hidden mb-4 border border-light-teal"><div class="category-header" style="margin-top:0;">${kat}</div><div class="divide-y divide-slate-50">`;
+                const hClass = getCategoryHeaderClass(kat);
+                const hTitle = getCategoryDisplayTitle(kat);
+                let html = `<div class="bg-white rounded-xl shadow-sm overflow-hidden mb-4 border ${kat === 'Zima' ? 'border-red-700' : 'border-light-teal'}"><div class="${hClass}" style="margin-top:0;">${hTitle}</div><div class="divide-y divide-slate-50">`;
                 items.sort().forEach(item => {
-                    const count = data[item] || 0;
+                    const sKey = getStockKey(item, produkt);
+                    const count = data[sKey] || 0;
                     html += `<div class="flex justify-between p-3 italic font-bold uppercase text-[10px]"><span>${item}</span><span class="${count < 50 ? 'text-red-500 font-black' : 'text-main-teal'}">${count}</span></div>`;
                 });
                 container.innerHTML += html + `</div></div>`;
@@ -826,12 +1030,16 @@
         }
 
         function naloziZalogoTrgovin() {
+            const produkt = window.selectedProduct.zaloga || 'Nalepke';
             const storeStock = {};
             trgovine.forEach(t => storeStock[t] = { poslano: 0, prodano: 0 });
             
             window.allTransactions.forEach(t => {
                 const trg = t.trgovina;
                 if (!trg) return;
+                const tProd = t.produkt || 'Nalepke';
+                if (tProd !== produkt) return;
+
                 if (!storeStock[trg]) storeStock[trg] = { poslano: 0, prodano: 0 };
                 if (t.tip === "Posiljka") storeStock[trg].poslano += (t.kolicina || 0);
                 if (t.tip === "Prodaja") storeStock[trg].prodano += (t.kolicina || 0);
@@ -848,7 +1056,7 @@
                     cont.innerHTML += `
                         <div onclick="openTrgovinaStats('${t}')" class="flex justify-between items-center bg-white p-3.5 rounded-xl border border-slate-100 shadow-sm cursor-pointer hover:bg-slate-50">
                             <div>
-                                <p class="font-black text-xs uppercase text-slate-700 italic">${t}</p>
+                                <p class="font-black text-xs uppercase text-slate-700 italic">${t} <span class="text-[9px] text-main-teal">(${produkt})</span></p>
                                 <p class="text-[9px] text-slate-400 font-bold">Poslano: ${s.poslano} kos • Prodano: ${s.prodano} kos</p>
                             </div>
                             <span class="font-black text-sm ${zaloga < 0 ? 'text-red-500' : 'text-amber-600'}">${zaloga} kos</span>
@@ -858,12 +1066,16 @@
 
         // ==================== ANALITIKA ====================
         async function naloziStats() {
+            const filterProd = window.selectedProduct.stats || 'Vse';
             let trgStats = {}, nalStats = {};
             trgovine.forEach(t => trgStats[t] = { eur: 0, prodanoKos: 0, poslanoKos: 0 });
             Object.values(kategorije).flat().forEach(n => nalStats[n] = 0);
             let neopredeljenoStariLogi = 0;
 
             window.allTransactions.forEach(data => {
+                const tProd = data.produkt || 'Nalepke';
+                if (filterProd !== 'Vse' && tProd !== filterProd) return;
+
                 const t = data.trgovina || "Drugo";
                 if (!trgStats[t]) trgStats[t] = { eur: 0, prodanoKos: 0, poslanoKos: 0 };
 
@@ -894,7 +1106,6 @@
                 nalStats["Neopredeljeno (stari vnosi brez detajlov)"] = neopredeljenoStariLogi;
             }
 
-            // PRIKAZ VSEH TRGOVIN (tudi če imajo 0 € prodaje)
             const trgList = document.getElementById('stats-trgovine-list');
             trgList.innerHTML = "";
             Object.entries(trgStats).sort((a,b) => b[1].eur - a[1].eur).forEach(([t, s], idx) => {
@@ -908,7 +1119,6 @@
                     </button>`;
             });
 
-            // VSE POSLANE NALEPKE
             const nalArr = Object.entries(nalStats).sort((a,b) => b[1] - a[1]);
             const renderNalepka = (n, k, i, isTop) => `
                 <div class="flex justify-between items-center bg-white ${isTop ? 'p-4' : 'p-2.5'} rounded-xl border border-slate-100 shadow-sm italic">
@@ -938,11 +1148,15 @@
         function renderTrgovinaStatsModal() {
             const t = window.activeStoreModalName;
             const tab = window.activeStoreModalTab;
+            const filterProd = window.selectedProduct.stats || 'Vse';
             
             let eur = 0, poslanoSkupaj = 0, prodanoSkupaj = 0;
             let prodaneNalepke = {}, poslaneNalepke = {};
 
             window.allTransactions.forEach(data => {
+                const tProd = data.produkt || 'Nalepke';
+                if (filterProd !== 'Vse' && tProd !== filterProd) return;
+
                 if (data.trgovina === t) {
                     if (data.tip === "Prodaja") {
                         eur += (data.znesek || 0);
@@ -964,7 +1178,7 @@
                 }
             });
 
-            document.getElementById('ts-title').innerText = t;
+            document.getElementById('ts-title').innerText = `${t} (${filterProd})`;
             document.getElementById('ts-rev').innerText = `Generirano: ${eur.toFixed(2)} €`;
             document.getElementById('ts-stock-info').innerText = `Skupaj poslano: ${poslanoSkupaj} kos | Prodano: ${prodanoSkupaj} kos | Zaloga: ${poslanoSkupaj - prodanoSkupaj} kos`;
 
@@ -982,8 +1196,8 @@
 
             if (entries.length === 0) {
                 list.innerHTML = tab === 'prodano'
-                    ? `<p class="text-xs italic text-slate-400 p-2">Za to trgovino so bile prodaje vpisane samo kot skupno število (${prodanoSkupaj} kos). Za prikaz po dizajnih pri vnosu prodaje vklopi "Točno po nalepkah".</p>`
-                    : `<p class="text-xs italic text-slate-400 p-2">Ni zabeleženih posamičnih poslanih nalepk.</p>`;
+                    ? `<p class="text-xs italic text-slate-400 p-2">Za to trgovino so bile prodaje vpisane samo kot skupno število (${prodanoSkupaj} kos). Za prikaz po dizajnih pri vnosu prodaje vklopi "Točno po dizajnih".</p>`
+                    : `<p class="text-xs italic text-slate-400 p-2">Ni zabeleženih posamičnih poslanih dizajnov.</p>`;
             } else {
                 entries.forEach(([n, k], i) => {
                     list.innerHTML += `<div class="flex justify-between bg-slate-50 p-2.5 rounded-lg items-center border border-slate-100"><span class="text-xs font-bold uppercase text-slate-600">${i+1}. ${n}</span><span class="font-black text-main-teal text-xs">${k} kos</span></div>`;
@@ -1027,6 +1241,7 @@
                 const tDate = parseDatum(d.datum);
                 const dat = tDate ? tDate.toLocaleDateString('sl-SI') : '';
                 const isPaid = !!d.placan;
+                const prod = d.produkt || 'Nalepke';
                 const ddvText = (isPaid && d.imaDdv) ? ` (DDV ${d.ddv || 10}%)` : '';
 
                 list.innerHTML += `
@@ -1034,6 +1249,7 @@
                         <div>
                             <div class="flex items-center gap-2">
                                 <p class="font-black uppercase text-sm text-slate-700">${d.trgovina}</p>
+                                <span class="text-[8px] font-black uppercase bg-slate-100 text-slate-600 px-2 py-0.5 rounded">${prod}</span>
                             </div>
                             <p class="text-[10px] text-slate-400 font-bold mt-0.5">${dat} • ${d.kolicina || 0} kos${ddvText}</p>
                             <p class="text-sm font-black text-yellow-600 mt-0.5">${(d.znesek || 0).toFixed(2)} €</p>
@@ -1330,6 +1546,7 @@
 
         // ==================== ADMIN ====================
         async function naloziAdminZalogo() {
+            const produkt = window.selectedProduct.admin || 'Nalepke';
             const div = document.getElementById('admin-zaloga-edit');
             const snap = await getDoc(doc(db, "zaloga", "glavno_skladisce"));
             const d = snap.exists() ? snap.data() : {};
@@ -1337,35 +1554,55 @@
             const mode = document.getElementById('edit-mode-toggle').checked;
 
             Object.entries(kategorije).forEach(([kat, items]) => {
-                let html = `<div class="bg-white rounded-xl shadow-sm overflow-hidden mb-4 border border-main-teal"><div class="category-header" style="margin-top:0; border-radius:0;">${kat}</div><div class="divide-y divide-slate-100">`;
+                const hClass = getCategoryHeaderClass(kat);
+                const hTitle = getCategoryDisplayTitle(kat);
+                let html = `<div class="bg-white rounded-xl shadow-sm overflow-hidden mb-4 border ${kat === 'Zima' ? 'border-red-700' : 'border-main-teal'}"><div class="${hClass}" style="margin-top:0; border-radius:0;">${hTitle} (${produkt})</div><div class="divide-y divide-slate-100">`;
                 items.sort().forEach(n => {
-                    html += `<div class="flex items-center justify-between p-2"><span class="uppercase font-bold text-[10px] text-slate-600">${n}</span><div class="flex gap-2"><input type="number" id="adj-${n}" class="admin-edit-input w-16 p-1 border rounded text-right font-black bg-slate-50" value="${d[n] || 0}" ${mode ? '' : 'disabled'}><button onclick="window.saveSingleZaloga('${n}')" class="admin-edit-input bg-light-teal text-white px-2 rounded ${mode ? '' : 'hidden'} font-bold text-xs">OK</button></div></div>`;
+                    const sKey = getStockKey(n, produkt);
+                    html += `<div class="flex items-center justify-between p-2"><span class="uppercase font-bold text-[10px] text-slate-600">${n}</span><div class="flex gap-2"><input type="number" id="adj-${sKey}" class="admin-edit-input w-16 p-1 border rounded text-right font-black bg-slate-50" value="${d[sKey] || 0}" ${mode ? '' : 'disabled'}><button onclick="window.saveSingleZaloga('${sKey}', '${n}')" class="admin-edit-input bg-light-teal text-white px-2 rounded ${mode ? '' : 'hidden'} font-bold text-xs">OK</button></div></div>`;
                 });
                 div.innerHTML += html + `</div></div>`;
             });
         }
 
-        window.saveSingleZaloga = async (ime) => {
-            const val = parseInt(document.getElementById(`adj-${ime}`).value) || 0;
-            await setDoc(doc(db, "zaloga", "glavno_skladisce"), { [ime]: val }, { merge: true });
-            alert(`${ime}: zaloga nastavljena na ${val}!`);
+        window.saveSingleZaloga = async (sKey, prikaznoIme) => {
+            const val = parseInt(document.getElementById(`adj-${sKey}`).value) || 0;
+            await setDoc(doc(db, "zaloga", "glavno_skladisce"), { [sKey]: val }, { merge: true });
+            alert(`${prikaznoIme}: zaloga nastavljena na ${val}!`);
         };
 
         async function naloziCenik() {
             const div = document.getElementById('admin-cenik-list'); 
             const snap = await getDoc(doc(db, "nastavitve", "cenik"));
             const data = snap.exists() ? snap.data() : {};
-            div.innerHTML = "";
+            div.innerHTML = `
+                <div class="grid grid-cols-4 gap-1 pb-2 mb-2 border-b font-black text-[9px] uppercase text-slate-400 text-center">
+                    <span class="text-left">Trgovina</span>
+                    <span>🏷️ Nal.</span>
+                    <span>✉️ Razg.</span>
+                    <span>🧲 Mag.</span>
+                </div>`;
             const mode = document.getElementById('edit-mode-toggle').checked;
 
             trgovine.forEach(t => {
-                const cena = data[t] !== undefined ? data[t] : 1;
-                div.innerHTML += `<div class="flex items-center justify-between p-2 border-b"><span>${t}</span><input type="number" step="0.1" class="admin-edit-input w-16 p-1 border rounded text-right bg-slate-50 font-black" value="${cena}" ${mode ? '' : 'disabled'} onchange="window.updateCena('${t}', this.value)"></div>`;
+                const cNal = data[t] !== undefined ? data[t] : 1;
+                const kRaz = getPriceKey(t, 'Razglednice');
+                const kMag = getPriceKey(t, 'Magneti');
+                const cRaz = data[kRaz] !== undefined ? data[kRaz] : 1;
+                const cMag = data[kMag] !== undefined ? data[kMag] : 2;
+
+                div.innerHTML += `
+                    <div class="grid grid-cols-4 gap-1 items-center py-2 border-b">
+                        <span class="font-bold text-[10px] truncate pr-1">${t}</span>
+                        <input type="number" step="0.1" class="admin-edit-input w-full p-1 border rounded text-center bg-slate-50 font-black" value="${cNal}" ${mode ? '' : 'disabled'} onchange="window.updateCena('${t}', this.value)">
+                        <input type="number" step="0.1" class="admin-edit-input w-full p-1 border rounded text-center bg-slate-50 font-black" value="${cRaz}" ${mode ? '' : 'disabled'} onchange="window.updateCena('${kRaz}', this.value)">
+                        <input type="number" step="0.1" class="admin-edit-input w-full p-1 border rounded text-center bg-slate-50 font-black" value="${cMag}" ${mode ? '' : 'disabled'} onchange="window.updateCena('${kMag}', this.value)">
+                    </div>`;
             });
         }
         
-        window.updateCena = async (trg, val) => {
-            await setDoc(doc(db, "nastavitve", "cenik"), { [trg]: parseFloat(val) || 0 }, { merge: true });
+        window.updateCena = async (key, val) => {
+            await setDoc(doc(db, "nastavitve", "cenik"), { [key]: parseFloat(val) || 0 }, { merge: true });
         };
 
         window.toggleEditMode = () => {
@@ -1385,6 +1622,7 @@
                 const data = d.data();
                 const tDate = parseDatum(data.datum);
                 const datum = tDate ? tDate.toLocaleDateString('sl-SI') : '';
+                const prod = data.produkt ? `<span class="text-[8px] bg-slate-100 text-slate-600 px-1.5 py-0.5 rounded ml-1 uppercase font-black">${data.produkt}</span>` : '';
                 let detalji = "";
                 if (data.tip === "Nabava") {
                     detalji = `<span class="font-black text-red-500">${data.kategorija || 'Nabava'}: ${(data.strosek || 0).toFixed(2)}€ ${data.kolicina ? `(${data.kolicina} kos)` : ''}</span>`;
@@ -1395,7 +1633,10 @@
                 list.innerHTML += `
                     <div class="bg-white p-3 rounded-xl border border-slate-100 shadow-sm flex flex-col gap-2">
                         <div class="flex justify-between items-center">
-                            <div class="flex flex-col"><span class="font-black text-main-teal uppercase text-[11px]">${data.tip}</span><span class="text-slate-400 font-bold">${datum}</span></div>
+                            <div class="flex flex-col">
+                                <div><span class="font-black text-main-teal uppercase text-[11px]">${data.tip}</span>${prod}</div>
+                                <span class="text-slate-400 font-bold">${datum}</span>
+                            </div>
                             <div class="text-right flex flex-col"><span class="font-bold text-slate-600">${data.trgovina || data.opis || '-'}</span>${detalji}</div>
                         </div>
                         <div class="flex justify-end gap-2 mt-1 border-t pt-2 border-slate-50">
@@ -1406,21 +1647,23 @@
             });
         }
 
-        // Brisanje loga z avtomatsko povrnitvijo zaloge
+        // Brisanje loga z avtomatsko povrnitvijo zaloge glede na produkt
         window.deleteLog = async (id) => { 
-            if (!confirm("Izbrišem ta vnos? (Če gre za pošiljko ali nakup nalepk, se bo ustrezno popravila tudi zaloga)")) return;
+            if (!confirm("Izbrišem ta vnos? (Če gre za pošiljko ali nakup izdelkov, se bo ustrezno popravila tudi zaloga)")) return;
             
             const docRef = doc(db, "transakcije", id);
             const snap = await getDoc(docRef);
             if (snap.exists()) {
                 const data = snap.data();
+                const prod = data.produkt || 'Nalepke';
                 if (data.artikli && Object.keys(data.artikli).length > 0) {
                     let stockRevert = {};
                     for (const [name, kol] of Object.entries(data.artikli)) {
                         const v = parseInt(kol) || 0;
                         if (v > 0) {
-                            if (data.tip === "Posiljka") stockRevert[name] = increment(v); // Vrnemo v skladišče
-                            if (data.tip === "Nabava") stockRevert[name] = increment(-v);  // Odštejemo iz skladišča
+                            const sKey = getStockKey(name, prod);
+                            if (data.tip === "Posiljka") stockRevert[sKey] = increment(v);
+                            if (data.tip === "Nabava") stockRevert[sKey] = increment(-v);
                         }
                     }
                     if (Object.keys(stockRevert).length > 0) {
@@ -1448,6 +1691,7 @@
             const data = docSnap.data();
             document.getElementById('edit-id').value = id; 
             document.getElementById('edit-tip').value = data.tip; 
+            document.getElementById('edit-produkt').value = data.produkt || 'Nalepke';
             document.getElementById('edit-trg').value = data.trgovina || trgovine[0];
             document.getElementById('edit-opis').value = data.opis || "";
             
@@ -1466,6 +1710,7 @@
             
             window.currentEditArtikli = data.artikli || {};
             window.currentEditKategorija = data.kategorija || null;
+            window.currentEditOldProdukt = data.produkt || 'Nalepke';
 
             const listArtikli = document.getElementById('edit-artikli-list');
             listArtikli.innerHTML = "";
@@ -1494,7 +1739,6 @@
                     valArtikli.classList.add('hidden');
                 }
             } else {
-                // Prodaja
                 valTrg.classList.remove('hidden');
                 valOpis.classList.add('hidden');
                 valZnesek.classList.remove('hidden');
@@ -1510,7 +1754,13 @@
         window.saveEdit = async () => {
             const id = document.getElementById('edit-id').value;
             const tip = document.getElementById('edit-tip').value;
-            let updateData = { datum: new Date(document.getElementById('edit-datum').value || new Date()) };
+            const newProdukt = document.getElementById('edit-produkt').value;
+            const oldProdukt = window.currentEditOldProdukt || 'Nalepke';
+
+            let updateData = {
+                datum: new Date(document.getElementById('edit-datum').value || new Date()),
+                produkt: newProdukt
+            };
 
             if (tip !== "Nabava") {
                 updateData.trgovina = document.getElementById('edit-trg').value;
@@ -1528,10 +1778,26 @@
                 const oldV = parseInt(window.currentEditArtikli[name]) || 0;
                 if (v > 0) newArtikli[name] = v;
                 newTotal += v;
-                const diff = v - oldV;
-                if (diff !== 0) {
-                    if (tip === "Posiljka") stockUpdates[name] = increment(-diff);
-                    if (tip === "Nabava") stockUpdates[name] = increment(diff);
+
+                if (oldProdukt === newProdukt) {
+                    const diff = v - oldV;
+                    if (diff !== 0) {
+                        const sKey = getStockKey(name, newProdukt);
+                        if (tip === "Posiljka") stockUpdates[sKey] = increment(-diff);
+                        if (tip === "Nabava") stockUpdates[sKey] = increment(diff);
+                    }
+                } else {
+                    // Če je bil spremenjen tudi tip produkta, povrnemo starega in uveljavimo novega
+                    if (oldV > 0) {
+                        const oldKey = getStockKey(name, oldProdukt);
+                        if (tip === "Posiljka") stockUpdates[oldKey] = increment(oldV);
+                        if (tip === "Nabava") stockUpdates[oldKey] = increment(-oldV);
+                    }
+                    if (v > 0) {
+                        const newKey = getStockKey(name, newProdukt);
+                        if (tip === "Posiljka") stockUpdates[newKey] = increment(-v);
+                        if (tip === "Nabava") stockUpdates[newKey] = increment(v);
+                    }
                 }
             });
 
